@@ -37,7 +37,7 @@ ___
 
 		- Different Networks 
 
-			![dn](../images/dn.jpeg)
+			![dn](../images/dn.png)
 
 			+ Một cluster nên có nhiều kết nối mạng
 
@@ -85,7 +85,7 @@ ___
 	- <a name="pacemaker">Pacemaker</a>
 
 		- pacemaker là một cluster quản lý các resource, nó có khả năng hoạt động với hầu hết các dịch vụ cluster bằng cách phát hiện và phục hồi từ node và resource-level bằng các sử dụng khả năng trao đổi và các mối quan hệ được cung cấp bởi kiến trúc hạ tầng ưa thích của bạn ( Corosync hoặc Heartbeat). [Xem thêm](pacemaker-overview.md)
-		
+
 		- Tính năng của pacemaker bao gồm:
 
 			+ Dò tìm và và khôi phục các dịch vụ lỗi
