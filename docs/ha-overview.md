@@ -13,7 +13,7 @@ ___
 	+ [Corosync](#corosync)
 	+ [Quorum](#quorum)
 	+ [STONITH](#stonith)
-	+ [Một vài thôn tin khác](#others-concept)
+	+ [Một vài thông tin khác](#others-concept)
 - [Các nội dung khác](#content-others)
 
 ___
@@ -118,7 +118,7 @@ ___
 
 			- Giả sử trong một cluster có một node A bị lỗi. Node A sẽ được khởi động lại và được thêm lại vào cluster một lần nữa. Điều này có vẻ đã được khắc phục lỗi. Nhưng nếu đây là một lỗi quan trọng và ngay sau khi khởi động lại node A. Node A vẫn gặp lại lỗi đó và lại được khởi động lại, điều này cứ lặp đi lặp lại như thế nhưng lỗi thì vẫn cứ lỗi. STONITH rất cần thiết trong trường hợp này và chúng ta cần cấu hình cho phép tắt node A này đi để ngăn việc node A cứ khởi động lại như vậy. 
 
-	- <a name="others-concept">Một vài thôn tin khác</a>
+	- <a name="others-concept">Một vài thông tin khác</a>
 
 		+ Trong một ha cluster yêu cầu chúng ta mở các ports tương ứng như sau:
 
