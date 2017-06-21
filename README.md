@@ -7,7 +7,10 @@ ___
 
 # Nội dung
 
-	Sẽ cập nhật sau
+	- [Tổng quan về High Availability](docs/ha-overview.md)
+	- [Tổng quan về pacemaker](docs/pacemaker-overview.md)
+		- [Tổng quan về quorum](docs/quorum-overview.md)
+		- [Tổng quan về STONITH/ fencing](docs/fencing-overview.md)
 	+ []
 
 
