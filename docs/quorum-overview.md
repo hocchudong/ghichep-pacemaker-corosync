@@ -27,8 +27,15 @@ ___
 	
 	+ Trong trường hợp mà số lượng các node khả dụng và không khả dụng bằng nhau quorum có thể được cấu hình để có chính sách `tiebreaker` để tiếp tục quorum và duy trì các node trong cluster còn lại và dành quorum cho node mà có id thấp nhất.
 
+	+ quorum chấp nhận 4 giá trị được cấu hình tương ứng với 4 hành động sau khi cluster xảy ra lỗi:
+
+		- ignore: Tiếp tục quản lý tất cả các tài nguyên
+		- freeze: Tiếp tục quản lý tất cả các tài nguyên, nhưng không phục hồi tài nguyên từ node lỗi
+		- stop: Dừng tất cả các resource trong vùng ảnh hưởng.
+		- suicide: Lập rào cản tất cả các node trong vùng có cluster bị ản hưởng
 
 ___
+
 
 - # <a name="others-content">Các nội dung khác</a>
 
