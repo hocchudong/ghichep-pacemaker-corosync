@@ -461,10 +461,10 @@
 	### Thêm resource Virtual IP (VIP) để pacemaker quản lý.
 
 	- Thiết lập Virtual IP (VIP) cho Cluster. Lựa chọn 1 IP mà bạn muốn làm VIP, IP này chưa được sử dụng trong hệ thống nhé.
-	- Trong bài lab này, tôi lựa chọn là `172.16.69.254`. 
+	- Trong bài lab này, ta lựa chọn là `172.16.69.254`. 
 	- Tên của resource là `Virtual_IP`
 		```sh
-		pcs resource create Virtual_IP ocf:heartbeat:IPaddr2 ip=172.16.69.254 cidr_netmask=32 op monitor interval=30s
+		pcs resource create Virtual_IP ocf:heartbeat:IPaddr2 ip=172.16.69.254 cidr_netmask=24 op monitor interval=30s
 		````
 
 	- Kiểm tra trạng thái của các resource hiện tại. 
