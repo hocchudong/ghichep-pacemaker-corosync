@@ -1,4 +1,3 @@
-# Cài đặt pacemaker, corosync và modules nginx: nginx-vts và nginx-stream-sts, nginx-sts
 
 
 # Mục lục
