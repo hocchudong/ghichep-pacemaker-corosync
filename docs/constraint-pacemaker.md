@@ -58,29 +58,28 @@ ____
 
 - ### <a name="opt-in">6.1.1. Cấu hình một "Opt-In" Cluster</a>
 
-		+ Để tạo ra một cấu hình `Opt-In` cluster, ta cần phải đặt lại giá trị `symmetric-cluster` để ngăn việc resource chạy được bất cứ trên node nào trong cluster bằng việc sử dụng câu lệnh:
+	+ Để tạo ra một cấu hình `Opt-In` cluster, ta cần phải đặt lại giá trị `symmetric-cluster` để ngăn việc resource chạy được bất cứ trên node nào trong cluster bằng việc sử dụng câu lệnh:
 
-				pcs property set symmetric-cluster=false
+			pcs property set symmetric-cluster=false
 
-		+ Giả sử, mô hình triển khia cluster có 3 node theo phần [Cài đặt pacemaker](pacemaker-corosync-installing.md#block). Tiếp theo ta cần cấu hình cho phép resource chỉ được hoạt động trên node nào bằng việc thực hiện các câu lệnh sau:
+	+ Giả sử, mô hình triển khia cluster có 3 node theo phần [Cài đặt pacemaker](pacemaker-corosync-installing.md#block). Tiếp theo ta cần cấu hình cho phép resource chỉ được hoạt động trên node nào bằng việc thực hiện các câu lệnh sau:
 
-				pcs constraint location Virtual_IP prefers lb01
-				pcs constraint location Virtual_IP prefers lb03
-
-
-				pcs constraint location Web_Cluster prefers lb02
-				pcs constraint location Web_Cluster prefers lb03
-
-			ý nghĩa: 
-
-			+ Chỉ cho phép resource Virtual_IP hoạt động trên node lb01 và node lb03
-			+ Chỉ cho phép resource Web_Cluster hoạt động trên node lb02 và node lb03
-			+ Khi các node lb01, lb02 bị lỗi thì quá trình fail-over sẽ xảy ra - resource Virtual_IP, Web_Cluster sẽ được dịch chuyển sang node lb03
+			pcs constraint location Virtual_IP prefers lb01
+			pcs constraint location Virtual_IP prefers lb03
 
 
+			pcs constraint location Web_Cluster prefers lb02
+			pcs constraint location Web_Cluster prefers lb03
 
+		ý nghĩa: 
+
+		+ Chỉ cho phép resource Virtual_IP hoạt động trên node lb01 và node lb03
+		+ Chỉ cho phép resource Web_Cluster hoạt động trên node lb02 và node lb03
+		+ Khi các node lb01, lb02 bị lỗi thì quá trình fail-over sẽ xảy ra - resource Virtual_IP, Web_Cluster sẽ được dịch chuyển sang node lb03
 
 - ### <a name="opt-out">6.1.2. Cấu hình một "Opt-Out" Cluster</a>
+
+	
 - ### <a name="order-constraints">6.2. Ràng buộc về thứ tự</a>
 - ### <a name="mand-order">6.2.1. Thứ tự cố định</a>
 - ### <a name="advi-order">6.2.2. Thứ tự linh động</a>
