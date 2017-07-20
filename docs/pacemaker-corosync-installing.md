@@ -1,36 +1,36 @@
-
+# 1. Tổng quan về cài đặt cơ bản cho pacemaker - corosync
 
 # Mục lục
 
-- [Môi trường cài đặt](#envir)
-- [Mô hình hệ thống](#block)
-- [IP Plan](#ipPlan)
-- [Cài đặt nginx và modules](#nginx)
-- [Kiểm tra cài đặt nginx](#test)
-- [Cài đặt pacemaker và corosync để tạo cluster cho nginx](#pacemaker)
-- [Cấu hình để thêm các resources vào Cluster](#configCluster)
-- [Thêm resource NGINX để pacemaker quản lý.](#addResources)
+- [1.1 Môi trường cài đặt](#envir)
+- [1.2 Mô hình hệ thống](#block)
+- [1.3 IP Plan](#ipPlan)
+- [1.4 Cài đặt nginx và modules](#nginx)
+- [1.5 Kiểm tra cài đặt nginx](#test)
+- [1.6 Cài đặt pacemaker và corosync để tạo cluster cho nginx](#pacemaker)
+- [1.7 Cấu hình để thêm các resources vào Cluster](#configCluster)
+- [1.7 Thêm resource NGINX để pacemaker quản lý](#addResources)
 - [Các nội dung khác](#content-others)
 
 
 # Nội dung
 
-- #### <a name="envir">Môi trường cài đặt</a>
+- #### <a name="envir">1.1 Môi trường cài đặt</a>
 	
 	+ OS: CentOS7.3 1611 64 bit
 	+ Nginx version: nginx/1.13.0
 	+ Pacemaker: pacemaker-1.1.15-11.el7_3.4.x86_64
 	+ Corosync: corosync-2.4.0-4.el7.x86_64
 
-- #### <a name="block">Mô hình hệ thống</a>
+- #### <a name="block">1.2 Mô hình hệ thống</a>
 
 	![topo-pacemk](../images/topo-pacemk.png)
 
-- #### <a name="ipPlan">IP Plan</a>
+- #### <a name="ipPlan">1.3 IP Plan</a>
 
 	![ipPlan-pacemk](../images/ipPlan-pacemk.png)
 
-- #### <a name="nginx">Cài đặt nginx và modules</a>
+- #### <a name="nginx">1.4 Cài đặt nginx và modules</a>
 
 	+ Lưu ý:
 
@@ -138,7 +138,7 @@
 				systemctl start nginx
 				systemctl enable nginx
 			
-- #### <a name="test">Kiểm tra cài đặt nginx</a>
+- #### <a name="test">1.5 Kiểm tra cài đặt nginx</a>
 
 	+ Sau khi đã cài đặt thành công nginx lên trên node lb01, ta thực hiện chạy câu lệnh sau trên node lb01:
 
@@ -272,7 +272,7 @@
 		- truy cập http://status-nginx.com/status-stream để kiểm tra thông tin lưu lượng của stream tcp trên server.
 
 
-- #### <a name="pacemaker">Cài đặt pacemaker và corosync để tạo cluster cho nginx</a>
+- #### <a name="pacemaker">1.6 Cài đặt pacemaker và corosync để tạo cluster cho nginx</a>
 
 	+ Lưu ý: 
 			
@@ -414,7 +414,7 @@
 				         3          1 lb03
 
 
-- #### <a name="configCluster">Cấu hình để thêm các resources vào Cluster</a>
+- #### <a name="configCluster">1.7 Cấu hình để thêm các resources vào Cluster</a>
 
 	- Disable cơ chế `STONITH`
 	  ```sh
@@ -426,7 +426,7 @@
 	  pcs property set no-quorum-policy=ignore
 	  ```
 
-	- Disable auto failbask
+	- Disable auto failback
 	  ```sh
 	  pcs property set default-resource-stickiness="INFINITY"
 	  ```
@@ -449,7 +449,7 @@
 
 
 
-- #### <a name="addResources">Thêm resource NGINX để pacemaker quản lý.</a>
+- #### <a name="addResources">1.7 Thêm resource NGINX để pacemaker quản lý</a>
 
 	- Chú ý: 
 		- Resource chính là các ứng dụng được cấu hình cluster.

@@ -1,29 +1,30 @@
-# Tìm hiểu về cách quản lý các resource trong pacemaker
+# 5. Tìm hiểu về cách quản lý các resource trong pacemaker
 
 ____
 
 
 # Mục lục
 
-- [Tạo một resource](#create)
-- [Các tính chất của resource](#properties)
-- [Các tham số cụ thể về resource](#parameter)
-- [Các tùy chọn cho resource](#options)
-- [Các nhóm resource](#groups)
-	- [Các tùy chọn cho nhóm resource](#options-group)
-	- [Các gắn kết liên quan tới nhóm](#stickness)
-- [Sự vận hành các resource](#operations)
-- [Hiển thị cấu hình của resource](#display-config)
-- [Chỉnh sửa các tham số cụ thể của resource](#modified-parameters)
-- [Kích hoạt, vô hiệu hóa nhóm các resource](#enabling-disabling)
-- [Xóa các cảnh báo của các resource](#cleanup)
+- [5.1. Tạo một resource](#create)
+- [5.2. Các tính chất của resource](#properties)
+- [5.3. Các tham số cụ thể về resource](#parameter)
+- [5.4. Các tùy chọn cho resource](#options)
+- [5.5. Các nhóm resource](#groups)
+	- [5.5.1. Các tùy chọn cho nhóm resource](#options-group)
+	- [5.5.2. Các gắn kết liên quan tới nhóm](#stickness)
+- [5.6. Sự vận hành các resource](#operations)
+- [5.7. Hiển thị cấu hình của resource](#display-config)
+- [5.8. Chỉnh sửa các tham số cụ thể của resource](#modified-parameters)
+- [5.9 Kích hoạt, vô hiệu hóa nhóm các resource](#enabling-disabling)
+- [5.10. Xóa các cảnh báo của các resource](#cleanup)
+- [Các nội dung khác](#content-others)
 ____
 
 
 # Nội dung
 
 
-- ### <a name="create">Tạo một resource</a>
+- ### <a name="create">5.1. Tạo một resource</a>
 	
 	+ Để tạo mới một resource trong cluster, ta sử dụng cú pháp câu lệnh như sau:
 
@@ -60,7 +61,7 @@ ____
 
 		câu lệnh trên sẽ xóa đi resource có tên hay resource_id là Virtual_IP.
 
-- ### <a name="properties">Các tính chất của resource</a>
+- ### <a name="properties">5.2. Các tính chất của resource</a>
 
 	- Các tính chất quy định của một resource nhắm thông báo cho cluster rằng kịch bản (resource agents) nào sẽ được sử dụng cho resource. Bao gồm các giá trị sau:
 
@@ -77,7 +78,7 @@ ____
 
 		xem thêm tại [Resource Overview](resource-overview.md#list)
 
-- ### <a name="parameter">Các tham số cụ thể về resource</a>
+- ### <a name="parameter">5.3. Các tham số cụ thể về resource</a>
 
 	- Để biết được các tham số cụ thể của resource thuộc một kiểu nào đó, ta sử dụng câu lệnh như sau:
 
@@ -106,7 +107,7 @@ ____
 			...	
 
 
-- ### <a name="options">Các tùy chọn cho resource</a>
+- ### <a name="options">5.4. Các tùy chọn cho resource</a>
 
 	- Ngoài các tham số cụ thể cho resource. Ta còn có thể thiết lập thêm các giá trị tùy chọn cho resource theo các giá trị cho giống như bảng sau:
 
@@ -141,7 +142,7 @@ ____
 
 				pcs resource meta Virtual_IP resource-stickiness=69
 
-- ### <a name="groups">Các nhóm resource</a>
+- ### <a name="groups">5.5. Các nhóm resource</a>
 
 	- Một điều quan trọng và phổ biến trong cluster đó là một tập các resource cần được cài đặt nằm ở cùng một vị trí trên một node nào đó và được khởi động một cách tuần tự và việc tắt đi sẽ ngược lại. Để đơn giản hóa cho khai báo cấu hình này, khái niệm nhóm (group) trong pacemaker xuất hiện.
 
@@ -188,7 +189,7 @@ ____
 		- `Virtual_IP` không thể chạy ở bất cứ trên node nào đó thì `Web_Cluster` cũng không thể hoạt động
 		- `Web_Cluster` không thể hoạt động ở bất cứ đâu thì `Virtual_IP` chưa chắc đã không hoạt động được
 
-	- ### <a name="options-group">Các tùy chọn cho nhóm resource</a>
+	- ### <a name="options-group">5.5.1 Các tùy chọn cho nhóm resource</a>
 
 		- Các tùy chọn meta-options cho resource group được kế thừa từ các tùy chọn meta-options cho resource với các giá trị:
 
@@ -198,11 +199,11 @@ ____
 
 		xem thêm tại [Các tùy chọn cho resource](#options)
 
-	- ### <a name="stickness">Các gắn kết liên quan tới nhóm</a>
+	- ### <a name="stickness">5.5.2 Các gắn kết liên quan tới nhóm</a>
 
 		- Sự gắn kết, đo đạc có bao nhiêu resource muốn tồn tại trên node đều phụ thuộc vào nhóm mà nó nằm trong đó. Mỗi hoạt động của resource trong nhóm sẽ góp phần làm tăng giá trị liên kết cho toàn bộ nhóm. Vì vậy, nếu độ tin cậy (resource-stickiness) mặc định là 100 và mỗi nhóm có 7 thành viên (resource) mà có 5 resource còn đang hoạt động thì độ gắn kết (resource-stickiness) của toàn nhóm sẽ là 500.
 
-- ### <a name="operations">Sự vận hành các resource</a>
+- ### <a name="operations">5.6 Sự vận hành các resource</a>
 
 	- Để đảm bảo các resource hoạt động một cách ổn định nhất, ta có thể thêm các hoạt động giám sát tới một định nghĩa của resource. Nếu ta không khai báo hoạt động giám sát cho một resource, mặc định thì nó sẽ vẫn được tạo ra với một khoảng thời gian lặp lại giám sát được quy định bởi resource agents. Nếu resource agents không cung cấp khoảng thời gian giám sát mặc định thì hoạnt động giám sát được tạo ra với khoảng thời gian là 60s (giây).
 
@@ -242,7 +243,7 @@ ____
 
 			pcs resource op defaults timeout=240s
 
-- ### <a name="display-config">Hiển thị cấu hình của resource</a>
+- ### <a name="display-config">5.7 Hiển thị cấu hình của resource</a>
 
 	- Để liệt kê ra danh sách tất các các resource đã cấu hình, ta sử dụng câu lệnh sau:
 
@@ -287,7 +288,7 @@ ____
 			              monitor interval=30s (Virtual_IP-monitor-interval-30s)
 
 
-- ### <a name="modified-parameters">Chỉnh sửa các tham số cụ thể của resource</a>
+- ### <a name="modified-parameters">5.8 Chỉnh sửa các tham số cụ thể của resource</a>
 
 	- Để cập nhật lại cấu hình cho resource bao gồm các tham số, ta sử dụng câu lệnh sau:
 
@@ -306,7 +307,7 @@ ____
 			              monitor interval=30s (Virtual_IP-monitor-interval-30s)
 
 
-- ### <a name="enabling-disabling">Kích hoạt, vô hiệu hóa nhóm các resource</a>
+- ### <a name="enabling-disabling">5.9 Kích hoạt, vô hiệu hóa nhóm các resource</a>
 
 	- Để khởi động một resource ta dùng câu lệnh:
 
@@ -316,7 +317,7 @@ ____
 
 			pcs resource disable resource_id
 
-- ### <a name="cleanup">Xóa các cảnh báo của các resource</a>
+- ### <a name="cleanup">5.10 Xóa các cảnh báo của các resource</a>
 	
 	- Trong quá trình các resource hoạt động, đôi khi sẽ xuất hiện các cảnh báo lỗi. Và bạn muốn đặt lại trạng thái của nó thì dùng câu lệnh sau để đặt lại toàn bộ trạng thái của resource và failcount của resource:
 
@@ -325,6 +326,6 @@ ____
 ____
 
 
-# Các nội dung khác
+# Các nội dung khác <a name="content-others"></a>
 
 	Sẽ cập nhật sau
