@@ -75,7 +75,7 @@ ____
 
 			+ Chỉ cho phép resource Virtual_IP hoạt động trên node lb01 và node lb03
 			+ Chỉ cho phép resource Web_Cluster hoạt động trên node lb02 và node lb03
-			+ 
+			+ Khi các node lb01, lb02 bị lỗi thì quá trình fail-over sẽ xảy ra - resource Virtual_IP, Web_Cluster sẽ được dịch chuyển sang node lb03
 
 
 
