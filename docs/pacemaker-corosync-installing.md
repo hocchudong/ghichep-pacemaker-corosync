@@ -557,7 +557,7 @@
 
 - ### <a name="webgui">1.9 Quản lý các resource với Web-GUI</a>
 
-	- Để thực hiện cài đặt và quản lý cluster cùng các resource sử dụng giao diện web. Vui lòng xem thêm tại [Quản lý cluster và các resource sử dụng Web GUI](pacemaker-corosync-installing.md#webgui)
+	- Để thực hiện cài đặt và quản lý cluster cùng các resource sử dụng giao diện web. Vui lòng xem thêm tại [Quản lý cluster và các resource sử dụng Web GUI](install-manage-by-webgui-pacemaker.md#webgui)
 
 - # <a name="content-others">Các nội dung khác</a>
 
