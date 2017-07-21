@@ -21,6 +21,8 @@ ___
 	- [1.6 Cài đặt pacemaker và corosync để tạo cluster cho nginx](docs/pacemaker-corosync-installing.md#pacemaker)
 	- [1.7 Cấu hình để thêm các resources vào Cluster](docs/pacemaker-corosync-installing.md#configCluster)
 	- [1.8 Thêm resource NGINX để pacemaker quản lý.](docs/pacemaker-corosync-installing.md#addResources)
+	- [1.9 Quản lý các resource với Web-GUI](docs/pacemaker-corosync-installing.md#webgui)
+
 - [2. Các câu lệnh của pacemaker](#)
 	Sẽ cập nhật sau.
 - [3. Tạo và quản lý một cluster](#)
