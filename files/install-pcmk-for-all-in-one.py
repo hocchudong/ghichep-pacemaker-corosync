@@ -1,7 +1,7 @@
 def customs_cmd():
-	os.system("echo =======================================================================================================")
-	os.system("echo ===                                          MAIN                                                   ===")
-	os.system("echo =======================================================================================================")
+	os.system("echo '======================================================================================================='")
+	os.system("echo '===                                        MAIN                                                     ==='")
+	os.system("echo '======================================================================================================='")
 	print "Enter `exit` to go out..."
 	while True:
 		try:
@@ -16,9 +16,9 @@ def customs_cmd():
 			os.system(command)
 
 def install_nginx_package():
-	os.system("echo =======================================================================================================")
-	os.system("echo ===                                          MAIN                                                   ===")
-	os.system("echo =======================================================================================================")
+	os.system("echo '======================================================================================================='")
+	os.system("echo '===                                        MAIN                                                     ==='")
+	os.system("echo '======================================================================================================='")
 	temp_cmd = """
 	echo "[nginx]" >> /etc/yum.repos.d/nginx.repo
 	echo "name=nginx repo" >> /etc/yum.repos.d/nginx.repo
@@ -37,9 +37,9 @@ def install_nginx_package():
 	pass
 
 def install_nginx_source():
-	os.system("echo =======================================================================================================")
-	os.system("echo ===                                          MAIN                                                   ===")
-	os.system("echo =======================================================================================================")
+	os.system("echo '======================================================================================================='")
+	os.system("echo '===                                        MAIN                                                     ==='")
+	os.system("echo '======================================================================================================='")
 	print """
 	System will being install NGINX version 1.11.13
 	Installing NGINX Dependencies
@@ -111,16 +111,16 @@ def install_nginx_source():
 	chmod a+rx /lib/systemd/system/nginx.service
 	systemctl start nginx
 	systemctl enable nginx
-	echo 'Install NGINX done.'F
+	echo 'Install NGINX done.'
 	"""
 	os.system(temp_cmd)
 	
 
 def install_nginx():
 	while True:
-		os.system("echo =======================================================================================================")
-		os.system("echo ===                                          MAIN                                                   ===")
-		os.system("echo =======================================================================================================")
+		os.system("echo '======================================================================================================='")
+		os.system("echo '===                                        MAIN                                                     ==='")
+		os.system("echo '======================================================================================================='")
 		print """
 		1. Installing from packages
 		2. Installing from source code
@@ -142,9 +142,9 @@ def install_nginx():
 
 def install_httpd():
 	while True:
-		os.system("echo =======================================================================================================")
-		os.system("echo ===                                          MAIN                                                   ===")
-		os.system("echo =======================================================================================================")
+		os.system("echo '======================================================================================================='")
+		os.system("echo '===                                        MAIN                                                     ==='")
+		os.system("echo '======================================================================================================='")
 		print """
 		1. Install from packages
 		2. Customs
@@ -175,7 +175,6 @@ def install_pcmk():
 	yum install pcs fence-agents -y
 	systemctl start pcsd 
 	systemctl enable pcsd
-	systemctl start corosync 
 	systemctl enable corosync
 	echo 'Install pacemaker and corosync done.'
 	"""
@@ -187,9 +186,9 @@ def install_pcmk():
 
 def create_resource_Virtual_IP():
 	while True:
-		os.system("echo =======================================================================================================")
-		os.system("echo ===                                          MAIN                                                   ===")
-		os.system("echo =======================================================================================================")
+		os.system("echo '======================================================================================================='")
+		os.system("echo '===                                        MAIN                                                     ==='")
+		os.system("echo '======================================================================================================='")
 		print """
 		1. Default ( with netmask default is 24)
 		2. Customs
@@ -214,9 +213,9 @@ def create_resource_Virtual_IP():
 
 def create_resource_web_cluster():
 	while True:
-		os.system("echo =======================================================================================================")
-		os.system("echo ===                                          MAIN                                                   ===")
-		os.system("echo =======================================================================================================")
+		os.system("echo '======================================================================================================='")
+		os.system("echo '===                                        MAIN                                                     ==='")
+		os.system("echo '======================================================================================================='")
 		print """
 		1. Default ()
 		2. Customs
@@ -259,8 +258,9 @@ def disable_firewall():
 	temp_cmd = """
 	sudo systemctl disable firewalld
 	sudo systemctl stop firewalld
-	sed -i 's/SElinux=enforcing/SElinux=disabled/g' /etc/sysconfig/SElinux
-	sed -i 's/SElinux=enforcing/SElinux=disabled/g' /etc/SElinux/config
+	sed -i 's/SElinux=enforcing/SElinux=disabled/g' /etc/sysconfig/selinux
+	sed -i 's/SElinux=enforcing/SElinux=disabled/g' /etc/selinux/config
+	setenforce 0
 	echo 'Disabled firewall'
 	"""
 	os.system(temp_cmd)
@@ -268,9 +268,9 @@ def disable_firewall():
 
 def install_main_webserver():
 	while True:
-		os.system("echo =======================================================================================================")
-		os.system("echo ===                                          MAIN                                                   ===")
-		os.system("echo =======================================================================================================")
+		os.system("echo '======================================================================================================='")
+		os.system("echo '===                                        MAIN                                                     ==='")
+		os.system("echo '======================================================================================================='")
 		print """
 		1. Install NGINX
 		2. Install Apache
@@ -320,9 +320,9 @@ def create_cluster():
 def main():
 	try:
 		while True:
-			os.system("echo =======================================================================================================")
-			os.system("echo ===                                          MAIN                                                   ===")
-			os.system("echo =======================================================================================================")
+			os.system("echo '======================================================================================================='")
+			os.system("echo '===                                        MAIN                                                     ==='")
+			os.system("echo '======================================================================================================='")
 			print """
 			1. Install pacemaker and corosync
 			2. Install nginx, apache
