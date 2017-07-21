@@ -172,7 +172,7 @@ ____
 
 	- Tại thời điểm này, bạn có thể truy cập tới dịch vụ web server mà cluster cung cấp qua địa chỉ IP ảo (VIP).
 
-		![images](../images/webgui/web-server)
+		![images](../images/webgui/web-server.png)
 
 		Đến đây coi như đã hoàn tất công việc. Tiếp theo ta sẽ xử lý các chuyện xuất hiện 6 node nhưng thực tế lại có 3 node trong cluster mà đã gặp ngay từ đầu.
 
