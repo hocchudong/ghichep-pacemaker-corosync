@@ -32,7 +32,7 @@ ____
 		![ipPlan-pacemk](../images/ipPlan-pacemk.png)
 
 
-- ### <a name="">2. Cài đặt pacemaker và corosync</a>
+- ### <a name="install">2. Cài đặt pacemaker và corosync</a>
 
 	- Để cài đặt pacemaker, thực hiện chạy câu lệnh
 
@@ -63,7 +63,7 @@ ____
 			setenforce 0
 
 
-- ### <a name="">3. Quản lý cluster và các resource với Web GUI</a>
+- ### <a name="webgui">3. Quản lý cluster và các resource với Web GUI</a>
 
 	- Trước khi muốn thực hiện tạo cluster và quản lý các node trong nó dễ dàng, ta nên đổi lại mật khẩu của user: `hacluster` với mật khẩu giống nhau ở tất cả các node cho thuận tiện. Sử dụng câu lệnh:
 
