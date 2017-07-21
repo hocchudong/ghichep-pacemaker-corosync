@@ -130,8 +130,10 @@ def install_nginx():
 		ans = raw_input("Choose one method to install nginx: ")
 		if ans == "1":
 			install_nginx_package()
+			break
 		elif ans == "2":
 			install_nginx_source()
+			break
 		elif ans == "3":
 			customs_cmd()
 		elif ans == "4":
@@ -316,6 +318,14 @@ def create_cluster():
 	"""
 	os.system(temp_cmd)
 	
+def disable_fences():
+	temp_cmd = """
+	pcs property set stonith-enabled=false
+	pcs property set no-quorum-policy=ignore
+	pcs property set default-resource-stickiness="INFINITY"
+	"""
+	os.system(temp_cmd)
+
 
 def main():
 	try:
@@ -344,6 +354,7 @@ def main():
 				pass
 			elif ans == "3":
 				create_cluster()
+				disable_fences()
 				pass
 			elif ans == "4":
 				create_resource_Virtual_IP()
