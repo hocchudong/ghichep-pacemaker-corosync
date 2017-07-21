@@ -182,12 +182,12 @@ ____
 
 				WARNING: corosync and pacemaker node names do not match (IPs used in setup?)
 
-			![images](../images/webgui/6node-alert.png)
+		![images](../images/webgui/6node-alert.png)
 
 		trong hình trên:
 
-			- phần đóng khung màu đỏ (1): chính là cảnh báo lỗi xuất hiện
-			- phần đóng khung màu đỏ (2): cho biết các resource đang chạy ổn định và cùng trên một node khi ta tạo ra các luật (ràng buộc)
+		- phần đóng khung màu đỏ (1): chính là cảnh báo lỗi xuất hiện
+		- phần đóng khung màu đỏ (2): cho biết các resource đang chạy ổn định và cùng trên một node khi ta tạo ra các luật (ràng buộc)
 
 	- Bây giờ, chúng ta hãy giải quyết nó bằng các thao tác qua CLI:
 
