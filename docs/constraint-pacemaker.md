@@ -36,6 +36,7 @@ ____
 			pcs constraint location resource_id prefers node_id
 
 		trong đó:
+
 			- resource_id: tên của resource
 			- node_id: tên của node
 
@@ -158,7 +159,7 @@ ____
 
 	để giải quyết vấn đề trên, bạn có thể dùng đến việc quản lý các resource theo nhóm theo tài liệu tại [5.5. Các nhóm resource](docs/resource-pacemaker.md#groups) nếu như các resource này đều cùng nằm trên cùng 1 node. Tuy nhiên, nếu các resource này không cùng nằm trên một node. Bạn có thể tạo ra một ràng buộc trên một tập các node với câu lệnh:
 
-			pcs constraint order set resource1 resource2 [resourceN]... [options] [set resourceX resourceY ... [options]] [setoptions [constraint_options]]
+		pcs constraint order set resource1 resource2 [resourceN]... [options] [set resourceX resourceY ... [options]] [setoptions [constraint_options]]
 
 	câu lệnh trên cung cấp các tùy chọn cấu hình như sau:
 
@@ -172,7 +173,7 @@ ____
 
 	Với mô tả như đã nói ở phần đầu mục này, ta có thể thực hiện cấu hình như sau với câu lệnh:
 
-			pcs constraint set A B C D sequentical=true
+		pcs constraint set A B C D sequentical=true
 
 	- Ví dụ:
 
