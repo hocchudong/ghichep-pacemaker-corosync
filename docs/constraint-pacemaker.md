@@ -12,12 +12,12 @@ ____
 - [6.2. Ràng buộc về thứ tự](#order-constraints)
 	- [6.2.1. Thứ tự bắt buộc](#mand-order)
 	- [6.2.2. Thứ tự không bắt buộc](#advi-order)
-	- [6.2.3. Thứ tự tập hợp các resource](#sets-order)
+	- [6.2.3. Thứ tự tập các resource](#sets-order)
 	- [6.2.4. Xóa bỏ resource từ các ràng buộc thứ tự](#remove-order)
 - [6.3. Ràng buộc colocation của resources](#colocation-constraint)
 - [6.3.1. Vị trí bắt buộc](#mand-place)
 - [6.3.2. Vị trí không bắt buộc](#advi-place)
-- [6.3.3. Colocation các tập hợp resource](#sets-place)
+- [6.3.3. Colocation các tập resource](#sets-place)
 - [6.3.4. Xóa bỏ ràng buộc colocation](#colocation-remove)
 - [6.4. Hiển thị cấu hình các ràng buộc](#display-constraints)
 - [Các nội dung khác](#content-others)
@@ -54,7 +54,7 @@ ____
 
 		+ `"Opt-Out" Cluster`: Cấu hình Cluster mà mặc định các resource có thể chạy trên tất cả các node. Sau đó ta sẽ khai báo resource không được phép hoạt động trên node nào. [Xem thêm](#opt-out)
 
-		+ Việc lựa chọn cấu hình Cluster theo hướng nào phụ thuộc vào ý tưởng cá nhân và cách mà ta tạo ra cluster. Nếu hầu hết các node đều có thể chạy resource thì việc lựa chọn hướng `Opt-Out` sẽ khiến cho việc cấu hình đơn giản hơn. Mặc khác, nếu các resource chỉ có thể chạy trên một tập hợp nhỏ các node trong cluster thì việc lựa chọn hướng  `Opt-In` sẽ khiến việc cấu hình đơn giản hơn.
+		+ Việc lựa chọn cấu hình Cluster theo hướng nào phụ thuộc vào ý tưởng cá nhân và cách mà ta tạo ra cluster. Nếu hầu hết các node đều có thể chạy resource thì việc lựa chọn hướng `Opt-Out` sẽ khiến cho việc cấu hình đơn giản hơn. Mặc khác, nếu các resource chỉ có thể chạy trên một tập nhỏ các node trong cluster thì việc lựa chọn hướng  `Opt-In` sẽ khiến việc cấu hình đơn giản hơn.
 
 - ### <a name="opt-in">6.1.1. Cấu hình một "Opt-In" Cluster</a>
 
@@ -144,7 +144,7 @@ ____
 
 			pcs constraint order Virtual_IP then Web_Cluster kind=Optionnal
 
-- ### <a name="sets-order">6.2.3. Thứ tự tập hợp các resource</a>
+- ### <a name="sets-order">6.2.3. Thứ tự tập các resource</a>
 
 	- Giả sử, khi bạn có hai hay nhiều hơn các resource phụ thuộc vào nhau. Hay nói cách khác việc hoạt động của resource này sẽ là tiền đề để cho resource tiếp theo hoạt động. Ví dụ ta có 4 resource lần lượt là A, B, C và D và bạn thực hiện cấu hình ràng buộc như sau:
 
@@ -156,16 +156,127 @@ ____
 
 		![set resource](../images/resource-set.png)
 
-	để giải quyết vấn đề trên, bạn có thể dùng đến việc quản lý các resource theo nhóm theo tài liệu tại [5.5. Các nhóm resource](docs/resource-pacemaker.md#groups) nếu như các resource này đều cùng nằm trên cùng 1 node. Tuy nhiên, nếu các resource này không cùng nằm trên một node
+	để giải quyết vấn đề trên, bạn có thể dùng đến việc quản lý các resource theo nhóm theo tài liệu tại [5.5. Các nhóm resource](docs/resource-pacemaker.md#groups) nếu như các resource này đều cùng nằm trên cùng 1 node. Tuy nhiên, nếu các resource này không cùng nằm trên một node. Bạn có thể tạo ra một ràng buộc trên một tập các node với câu lệnh:
+
+			pcs constraint order set resource1 resource2 [resourceN]... [options] [set resourceX resourceY ... [options]] [setoptions [constraint_options]]
+
+	câu lệnh trên cung cấp các tùy chọn cấu hình như sau:
+
+	| Tùy chọn | Mô tả cho tùy chọn |
+	| ------------- | ------------- |
+	| sequentical | Có thể thiết lập giá trị <br><ul><li>true</li><li>false</li></ul><br> để thế hiện bất cứ khi nào các resource cũng phải có thứ tự liên quan tới một resource khác. Nếu được cho giá trị là `false` thì nó cho phép tập các resource có thế được ràng buộc thứ tự liên quan tới các tập resource khác mà không có các resource nó chứa trong tập resource khác ấy.Vì vậy mà nó thực sự có ý nghĩa nếu có nhiều tập resource được thiết lập ràng buộc.|
+	| require-all | Có thể có giá trị thiết lập là `true` hoặc `false` với ý nghĩa yêu cầu tất cả các resource phải được hoạt động trước khi tiếp tục chuyển sang tập khác. Nếu đặt là `false` có nghĩa chỉ một resource trong tập resource cần được hoạt động trước khi nó tiếp tục hướng tới tập khác. Tùy chọn này với giá trị false sẽ không có ảnh hưởng trừ khi được sử dụng cùng với các tập không có ràng buộc thứ tự (sequentical phải được đặt là false)|
+	| action | với các giá trị `start`, `promote`, `demote`, `stop` được mô tả giống như ở mục [Ràng buộc thứ tự](#order-constraints) |
+	| id | Tên của constraint |
+	|role| Với các giá trị: Stopped/Started/Master/Slave|
+
+	Với mô tả như đã nói ở phần đầu mục này, ta có thể thực hiện cấu hình như sau với câu lệnh:
+
+			pcs constraint set A B C D sequentical=true
+
+	- Ví dụ:
+
+		Với mô hình như sau:
+
+		![two-sets.png](../images/two-sets.png)
+
+		ta cần thực hiện cấu hình sử dụng các câu lệnh như sau:
+
+			pcs constraint order set A B sequentical=false set C D sequentical=false id=AB-CD
+
+		Với mô hình như sau:
+
+		![three-sets.png](../images/three-sets.png)
+
+		ta cần thực hiện cấu hình sử dụng câu lệnh sau:
+
+			pcs constraint order set A B sequentical=false set C D sequentical=true set E F sequentical=false
+	
+		Với mô hình phức tạp hơn một chút như sau:
+
+		![three-sets-complex.png](../images/three-sets-complex.png)
+
+		ta thực hiện cấu hình sử dụng câu lệnh:
+
+			pcs constraint order set G F sequentical=true set C D E sequentical=false set B A sequentical=true id=GF-CDE-BA
+
 - ### <a name="remove-order">6.2.4. Xóa bỏ resource từ các ràng buộc thứ tự</a>
+
+	- Sử dụng câu lệnh sau để xóa bỏ sàng buộc thứ tự:
+
+			pcs constraint order remove resource1 [resourceN]...
+
+
 - ### <a name="colocation-constraint">6.3. Ràng buộc colocation của resources</a>
+
+	- Ràng buộc này quy định vị trí của một resource A phụ thuộc vào vị trí của một resource B đang chạy trên node nào trong cluster. Hay nói cách khác resource A muốn hoạt động thì phải có resource B cũng đang hoạt động và cùng nằm chung trên một node_id với resource A.
+
+	- Để tạo ra một ràng buộc colocation, sử dụng câu lệnh:
+
+			pcs constraint colocation add [master|slave] source_resource with [master|slave] target_resource [score] [options]
+
+		trong đó:
+
+			- source_resource: là resource_id hay tên của resource phụ thuộc vào resource khác
+			- target_resource: là resource_id hay tên của resource được resource khác phụ thuộc vào
+			- source_resource và target_resource không có ranh giới phân biệt
+
+		Cluster sẽ quyết định vị trí của target_resource trước tiên sau đó sẽ quyết định tới vị trí của source_resource
+
 - ### <a name="mand-place">6.3.1. Vị trí bắt buộc</a>
+
+	- Ràng buộc này thực sự có hiệu lực khi tùy chọn score được đặt giá trị là: +INFINITY hoặc -INFINITY. Với ý nghĩa:
+
+		+ `+INFINITY`: Quy định source_resource phải chạy cùng trên một node với target_resource. Đây là giá trị mặc định
+		+ `-INFINITY`: Quy định source_resource không được chạy cùng trên một node với target_resource. 
+
 - ### <a name="advi-place">6.3.2. Vị trí không bắt buộc</a>
-- ### <a name="sets-place">6.3.3. Colocation các tập hợp resource</a>
+
+	- Đối với số lượng các ràng buộc có score=-INFINITY ít hơn score=INFINITY thì cluster sẽ cố gắng thực hiện mong muốn của bạn.
+	Xem thêm thông tin tại [Advisory Placement](http://clusterlabs.org/doc/en-US/Pacemaker/1.0/html/Pacemaker_Explained/ch06s04s03.html)
+
+- ### <a name="sets-place">6.3.3. Colocation các tập resource</a>
+
+	- Ràng buộc này giống như ràng buộc có các thuộc tính giống như của ràng buộc nhóm resource và ràng buộc thứ tự nhưng áp dụng cho nhóm các resource phải nằm cùng trên một node với nhau. Để tạo ràng buộc, ta sử dụng câu lệnh:
+
+			pcs constraint colocation set resource1 resource2 [resourceN]... [options] [set resourceX resourceY ... [options]] [setoptions [constraint_options]]
+
+
 - ### <a name="colocation-remove">6.3.4. Xóa bỏ ràng buộc colocation</a>
+
+	- Để xóa bảo ràng buộc colocation đã tạo. Ta sử dụng câu lệnh:
+
+		pcs constraint colocation remove source_resource target_resource [constraint_id]
+
+	trong đó: constraint_id là tên của ràng buộc.
+
+
 - ### <a name="display-constraints">6.4. Hiển thị cấu hình các ràng buộc</a>
 
+	- Để hiển thị thống kê các ràng buộc. Sử dụng câu lệnh:
+
+			pcs constraint
+
+		hoặc
+
+			pcs constraint show --full
+
+		để hiển thị cụ thể chi tiết về từng constraint
+
+	- Để hiển thị các ràng buộc về thứ tự. Sử dụng câu lệnh:
+
+			pcs constraint order show [--full]
+
+	- Để hiển thị ràng buộc về vị trí. Sử dụng câu lệnh:
+
+			pcs constraint location show [--full]			
+
+	- Để hiển thị ràng buộc colocation. Sử dụng câu lệnh:
+
+			pcs constraint colocation show [--full]
+			
 ____
+
 
 
 # Các nội dung khác <a name="content-others"></a>
