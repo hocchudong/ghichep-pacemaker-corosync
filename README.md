@@ -34,8 +34,7 @@ ___
 	- [1.8 Thêm resource NGINX để pacemaker quản lý.](docs/pacemaker-corosync-installing.md#addResources)
 	- [1.9 Quản lý các resource với Web-GUI](docs/pacemaker-corosync-installing.md#webgui)
 
-- [2. Các câu lệnh của pacemaker](#)
-	Sẽ cập nhật sau.
+- [2. Các câu lệnh của pacemaker](cmd-pcmk.md)
 - [3. Tạo và quản lý một cluster](docs/create-cluster-pcmk.md)
 	- [3. 1  Tạo một cluster](docs/create-cluster-pcmk.md#create)
 		- [3.1.1 Khởi động pacemaker](docs/create-cluster-pcmk.md#start)
