@@ -573,3 +573,5 @@
 		- [3.2.3 Xóa bỏ node trong cluster](create-cluster-pcmk.md#rem-node)
 	- [3.3 Xóa cấu hình cluster](create-cluster-pcmk.md#rem-config)
 	- [3.4 Hiển thị trạng thái cluster](create-cluster-pcmk.md#disp-stat)
+
+- [E. Thực hiện cấu hình tạo cluster với chế độ active/active](master-resource-pcmk.md#configure)
