@@ -1,4 +1,4 @@
-# 6. Các ràng buộc resources trong pacemaker
+# 5. Các ràng buộc resources trong pacemaker
 
 
 ____
@@ -6,6 +6,22 @@ ____
 
 # Mục lục
 
+<<<<<<< HEAD
+- [5.1. Ràng buộc vị trí](#location-constraints)
+	- [5.1.1. Cấu hình một "Opt-In" Cluster](#opt-in)
+	- [5.1.2. Cấu hình một "Opt-Out" Cluster](#opt-out)
+- [5.2. Ràng buộc về thứ tự](#order-constraints)
+	- [5.2.1. Thứ tự bắt buộc](#mand-order)
+	- [5.2.2. Thứ tự không bắt buộc](#advi-order)
+	- [5.2.3. Thứ tự tập các resource](#sets-order)
+	- [5.2.4. Xóa bỏ resource từ các ràng buộc thứ tự](#remove-order)
+- [5.3. Ràng buộc colocation của resources](#colocation-constraint)
+- [5.3.1. Vị trí bắt buộc](#mand-place)
+- [5.3.2. Vị trí không bắt buộc](#advi-place)
+- [5.3.3. Colocation các tập resource](#sets-place)
+- [5.3.4. Xóa bỏ ràng buộc colocation](#colocation-remove)
+- [5.4. Hiển thị cấu hình các ràng buộc](#display-constraints)
+=======
 - [6.1. Ràng buộc vị trí](#location-constraints)
 	- [6.1.1. Cấu hình một "Opt-In" Cluster](#opt-in)
 	- [6.1.2. Cấu hình một "Opt-Out" Cluster](#opt-out)
@@ -15,11 +31,12 @@ ____
 	- [6.2.3. Thứ tự tập các resource](#sets-order)
 	- [6.2.4. Xóa bỏ resource từ các ràng buộc thứ tự](#remove-order)
 - [6.3. Ràng buộc colocation của resources](#colocation-constraint)
-- [6.3.1. Vị trí bắt buộc](#mand-place)
-- [6.3.2. Vị trí không bắt buộc](#advi-place)
-- [6.3.3. Colocation các tập resource](#sets-place)
-- [6.3.4. Xóa bỏ ràng buộc colocation](#colocation-remove)
+	- [6.3.1. Vị trí bắt buộc](#mand-place)
+	- [6.3.2. Vị trí không bắt buộc](#advi-place)
+	- [6.3.3. Colocation các tập resource](#sets-place)
+	- [6.3.4. Xóa bỏ ràng buộc colocation](#colocation-remove)
 - [6.4. Hiển thị cấu hình các ràng buộc](#display-constraints)
+>>>>>>> b07a42457724ac31d43ade6956c57c9d4fa55e86
 - [Các nội dung khác](#content-others)
 ____
 
@@ -27,7 +44,7 @@ ____
 # Nội dung
 
 
-- ### <a name="location-constraints">6.1. Ràng buộc vị trí</a>
+- ### <a name="location-constraints">5.1. Ràng buộc vị trí</a>
 
 	- Ý nghĩa của ràng buộc này quy định resource có thể hoạt động trên những node nào. Ta có thể thực hiện cấu hình để xác định ràng buộc vị trí cho resource được phép hoạt động hay không hoạt động trên một node nào đó!
 
@@ -57,7 +74,7 @@ ____
 
 		+ Việc lựa chọn cấu hình Cluster theo hướng nào phụ thuộc vào ý tưởng cá nhân và cách mà ta tạo ra cluster. Nếu hầu hết các node đều có thể chạy resource thì việc lựa chọn hướng `Opt-Out` sẽ khiến cho việc cấu hình đơn giản hơn. Mặc khác, nếu các resource chỉ có thể chạy trên một tập nhỏ các node trong cluster thì việc lựa chọn hướng  `Opt-In` sẽ khiến việc cấu hình đơn giản hơn.
 
-- ### <a name="opt-in">6.1.1. Cấu hình một "Opt-In" Cluster</a>
+- ### <a name="opt-in">5.1.1. Cấu hình một "Opt-In" Cluster</a>
 
 	+ Để tạo ra một cấu hình `Opt-In` cluster, ta cần phải đặt lại giá trị `symmetric-cluster` để ngăn việc resource chạy được bất cứ trên node nào trong cluster bằng việc sử dụng câu lệnh:
 
@@ -78,7 +95,7 @@ ____
 		+ Chỉ cho phép resource Web_Cluster hoạt động trên node lb02 và node lb03
 		+ Khi các node lb01, lb02 bị lỗi thì quá trình fail-over sẽ xảy ra - resource Virtual_IP, Web_Cluster sẽ được dịch chuyển sang node lb03
 
-- ### <a name="opt-out">6.1.2. Cấu hình một "Opt-Out" Cluster</a>
+- ### <a name="opt-out">5.1.2. Cấu hình một "Opt-Out" Cluster</a>
 
 	+ Để tạo ra một cấu hình theo hướng `Opt-Out` cluster, ta cần phải đặt giá trị `symmetric-cluster` để cho phép resource chạy được bất cứ trên node nào trong cluster bằng việc sử dụng câu lệnh:
 	
@@ -94,7 +111,7 @@ ____
 			pcs constraint location Web_Cluster prefers lb02
 			pcs constraint location Web_Cluster avoids lb01
 
-- ### <a name="order-constraints">6.2. Ràng buộc về thứ tự</a>
+- ### <a name="order-constraints">5.2. Ràng buộc về thứ tự</a>
 
 	- Ràng buộc này quy định thứ tự mà resource hoạt động. Có thể cấu hình để quy định resource hoạt động hay dừng lại khi có hành động nào xảy ra.
 
@@ -122,7 +139,7 @@ ____
 		| kind | <ul><li>Optionnal: Chỉ áp dụng ràng buộc nếu cả hai resource đều đang hoạt động hoặc không hoạt động (Xem thêm)[#advi-order]</li><li>Mandatory (mặc định): Nếu resource đầu tiên khai bao mà không hoạt động hoặc không thể khởi động, thì resource thứ hai đã khai bao trong câu lệnh bắt buộc phải không được hoạt động (Xem thêm)[#mand-order]</li><li>Serialize: Đảm bảo rằng sẽ không có hành động dừng lại/ khởi động (stop/start) cùng xảy ra cho cùng một nhóm các resource</li></ul> |
 		| symmetrical | <ul><li>true (mặc định): buộc các resource dừng hoạt động theo thứ tự ngược lại, resource khai bao sau sẽ dùng hoạt động trước rồi mới đến resource khai báo đầu tiên</li><li>false: Dừng hoạt động dịch vụ theo đúng thứ tự đã khai báo trong câu lệnh</li></ul> |
 		
-- ### <a name="mand-order">6.2.1. Thứ tự bắt buộc</a>
+- ### <a name="mand-order">5.2.1. Thứ tự bắt buộc</a>
 
 	- Ràng buộc chỉ ra rằng resource thứ hai khai báo trong câu lệnh tạo ràng buộc không thể trở lên hoạt động khi không có resource đầu tiên chỉ ra trong câu lệnh đó đang hoạt động.
 	- Nếu resource đầu tiên khai báo đang hoạt động và dừng lại thì resource thứ hai trong khai báo câu lệnh cũng sẽ trở lên dừng hoạt động (nếu nó đang hoạt động)
@@ -137,7 +154,7 @@ ____
 			- Virtual_IP: là resource khai báo đầu tiên hay resource thứ nhất
 			- Web_Cluster: là resource khai báo thứ hai hay resource thứ hai.
 
-- ### <a name="advi-order">6.2.2. Thứ tự không bắt buộc</a>
+- ### <a name="advi-order">5.2.2. Thứ tự không bắt buộc</a>
 
 	- Ràng buộc thứ tự này chỉ ra rằng nó có hiệu lực khi và chỉ khi cả hai resource cùng đang dừng hoạt động hoặc đang khởi động. Các thay đổi trạng thái của resource thứ nhất sẽ không có ảnh hưởng gì đến resource thứ hai.
 
@@ -145,7 +162,7 @@ ____
 
 			pcs constraint order Virtual_IP then Web_Cluster kind=Optionnal
 
-- ### <a name="sets-order">6.2.3. Thứ tự tập các resource</a>
+- ### <a name="sets-order">5.2.3. Thứ tự tập các resource</a>
 
 	- Giả sử, khi bạn có hai hay nhiều hơn các resource phụ thuộc vào nhau. Hay nói cách khác việc hoạt động của resource này sẽ là tiền đề để cho resource tiếp theo hoạt động. Ví dụ ta có 4 resource lần lượt là A, B, C và D và bạn thực hiện cấu hình ràng buộc như sau:
 
@@ -201,14 +218,14 @@ ____
 
 			pcs constraint order set G F sequentical=true set C D E sequentical=false set B A sequentical=true id=GF-CDE-BA
 
-- ### <a name="remove-order">6.2.4. Xóa bỏ resource từ các ràng buộc thứ tự</a>
+- ### <a name="remove-order">5.2.4. Xóa bỏ resource từ các ràng buộc thứ tự</a>
 
 	- Sử dụng câu lệnh sau để xóa bỏ sàng buộc thứ tự:
 
 			pcs constraint order remove resource1 [resourceN]...
 
 
-- ### <a name="colocation-constraint">6.3. Ràng buộc colocation của resources</a>
+- ### <a name="colocation-constraint">5.3. Ràng buộc colocation của resources</a>
 
 	- Ràng buộc này quy định vị trí của một resource A phụ thuộc vào vị trí của một resource B đang chạy trên node nào trong cluster. Hay nói cách khác resource A muốn hoạt động thì phải có resource B cũng đang hoạt động và cùng nằm chung trên một node_id với resource A.
 
@@ -224,26 +241,26 @@ ____
 
 		Cluster sẽ quyết định vị trí của target_resource trước tiên sau đó sẽ quyết định tới vị trí của source_resource
 
-- ### <a name="mand-place">6.3.1. Vị trí bắt buộc</a>
+- ### <a name="mand-place">5.3.1. Vị trí bắt buộc</a>
 
 	- Ràng buộc này thực sự có hiệu lực khi tùy chọn score được đặt giá trị là: +INFINITY hoặc -INFINITY. Với ý nghĩa:
 
 		+ `+INFINITY`: Quy định source_resource phải chạy cùng trên một node với target_resource. Đây là giá trị mặc định
 		+ `-INFINITY`: Quy định source_resource không được chạy cùng trên một node với target_resource. 
 
-- ### <a name="advi-place">6.3.2. Vị trí không bắt buộc</a>
+- ### <a name="advi-place">5.3.2. Vị trí không bắt buộc</a>
 
 	- Đối với số lượng các ràng buộc có score=-INFINITY ít hơn score=INFINITY thì cluster sẽ cố gắng thực hiện mong muốn của bạn.
 	Xem thêm thông tin tại [Advisory Placement](http://clusterlabs.org/doc/en-US/Pacemaker/1.0/html/Pacemaker_Explained/ch06s04s03.html)
 
-- ### <a name="sets-place">6.3.3. Colocation các tập resource</a>
+- ### <a name="sets-place">5.3.3. Colocation các tập resource</a>
 
 	- Ràng buộc này giống như ràng buộc có các thuộc tính giống như của ràng buộc nhóm resource và ràng buộc thứ tự nhưng áp dụng cho nhóm các resource phải nằm cùng trên một node với nhau. Để tạo ràng buộc, ta sử dụng câu lệnh:
 
 			pcs constraint colocation set resource1 resource2 [resourceN]... [options] [set resourceX resourceY ... [options]] [setoptions [constraint_options]]
 
 
-- ### <a name="colocation-remove">6.3.4. Xóa bỏ ràng buộc colocation</a>
+- ### <a name="colocation-remove">5.3.4. Xóa bỏ ràng buộc colocation</a>
 
 	- Để xóa bảo ràng buộc colocation đã tạo. Ta sử dụng câu lệnh:
 
@@ -252,7 +269,7 @@ ____
 	trong đó: constraint_id là tên của ràng buộc.
 
 
-- ### <a name="display-constraints">6.4. Hiển thị cấu hình các ràng buộc</a>
+- ### <a name="display-constraints">5.4. Hiển thị cấu hình các ràng buộc</a>
 
 	- Để hiển thị thống kê các ràng buộc. Sử dụng câu lệnh:
 
@@ -282,4 +299,22 @@ ____
 
 # Các nội dung khác <a name="content-others"></a>
 
+<<<<<<< HEAD
+- [A. Tổng quan về High Availability](docs/ha-overview.md)
+	+ [A.1 Giới thiệu về High Availability](docs/ha-overview.md#whatis-ha)
+	+ [A.2 Các khái niệm, thuật ngữ cần biết trong HA](docs/ha-overview.md#concepts)
+		+ [A.2.1 Cluster](docs/ha-overview.md#whatis-cl)
+		+ [A.2.2 Resource](docs/ha-overview.md#resource)
+		+ [A.2.3 Pacemaker](docs/ha-overview.md#pacemaker)
+		+ [A.2.4 Corosync](docs/ha-overview.md#corosync)
+		+ [A.2.5 Quorum](docs/ha-overview.md#quorum)
+		+ [A.2.6 STONITH](docs/ha-overview.md#stonith)
+		+ [A.2.7 Các port sử dụng cho HA cluster](docs/ha-overview.md#others-concept)
+
+- [B. Tổng quan về pacemaker](docs/pacemaker-overview.md)
+	- [B.1 Tổng quan về quorum](docs/quorum-overview.md)
+	- [B.2 Tổng quan về STONITH/ fencing](docs/fencing-overview.md)
+	- [B.3 Tổng quan về resource](docs/resource-overview.md)
+=======
 	Sẽ cập nhật sau
+>>>>>>> b07a42457724ac31d43ade6956c57c9d4fa55e86
