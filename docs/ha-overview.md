@@ -1,26 +1,26 @@
-# Tổng quan về High Availability Cluster
+# A. Tổng quan về High Availability Cluster
 
 ___
 
 
 # Mục lục
 
-+ [Giới thiệu về High Availability](#whatis-ha)
-+ [Các khái niệm, thuật ngữ cần biết trong HA](#concepts)
-	+ [Cluster](#whatis-cl)
-	+ [Resource](#resource)
-	+ [Pacemaker](#pacemaker)
-	+ [Corosync](#corosync)
-	+ [Quorum](#quorum)
-	+ [STONITH](#stonith)
-	+ [Một vài thông tin khác](#others-concept)
++ [A.1 Giới thiệu về High Availability](#whatis-ha)
++ [A.2 Các khái niệm, thuật ngữ cần biết trong HA](#concepts)
+	+ [A.2.1 Cluster](#whatis-cl)
+	+ [A.2.2 Resource](#resource)
+	+ [A.2.3 Pacemaker](#pacemaker)
+	+ [A.2.4 Corosync](#corosync)
+	+ [A.2.5 Quorum](#quorum)
+	+ [A.2.6 STONITH](#stonith)
+	+ [A.2.7 Các port sử dụng cho HA cluster](#others-concept)
 - [Các nội dung khác](#content-others)
 
 ___
 
 # Nội dung
 
-- <a name="whatis-ha">Giới thiệu về High Availability Cluster</a>
+- <a name="whatis-ha">A.1 Giới thiệu về High Availability Cluster</a>
 
 	- Mục đích của một HA (High Availability) cluster là đảm bảo rằng các tài nguyên quan trọng có thể được tận dụng một cách tối đa nhất có thể. Mục đích này được thực hiện bằng các cài đặt nhiều cluster software trên nhiều máy chủ. Các cluster software này theo dõi sự khả dụng của các node trong cluster.	Đòng thời giám sát sự khả dụng của các dịch vụ được quản lý bởi cluster như: File Share, File Storage, ... Nếu như các máy chủ này ngừng hoạt động hoặc các resource ngừng hoạt động thì ha cluster sẽ thông báo và đảm bảo rằng resource được khởi động lại ở một nơi nào đó trong cluster sao cho có thể sử dụng lại được resource đã ngừng hoạt động đó trong một khoảng thời gian tối thiểu.
 
@@ -67,9 +67,9 @@ ___
 				+ stonith/ fencing
 
 
-- <a name="concepts">Các khái niệm trong cần biết trong HA</a>
+- <a name="concepts">A.2 Các khái niệm trong cần biết trong HA</a>
 	
-	- <a name="whatis-cl">Cluster</a>
+	- <a name="whatis-cl">A.2.1 Cluster</a>
 
 		- `Cluster` là một nhóm gồm hai hay nhiều máy tính ( mỗi máy tính được gọi là một node hay member) hoạt động cùng với nhau để cung cấp một dịch vụ nào đó. Mỗi một node là một process hoạt động. Thường thì node được đồng nhất với một server do mỗi node thường được cài đặt trên một server riêng rẽ (để tránh bị chết chùm.) Mục đích của cluster là để:
 
@@ -78,11 +78,11 @@ ___
 			+ Load Balancing
 			+ High Performance
 
-	- <a name="resource">Resource</a>
+	- <a name="resource">A.2.2 Resource</a>
 
 		- `resource` trong cluster có thể được biết đến như các dịch vụ mà cluster cung cấp.
 
-	- <a name="pacemaker">Pacemaker</a>
+	- <a name="pacemaker">A.2.3 Pacemaker</a>
 
 		- pacemaker là một cluster quản lý các resource, nó có khả năng hoạt động với hầu hết các dịch vụ cluster bằng cách phát hiện và phục hồi từ node và resource-level bằng các sử dụng khả năng trao đổi và các mối quan hệ được cung cấp bởi kiến trúc hạ tầng ưa thích của bạn ( Corosync hoặc Heartbeat). [Xem thêm](pacemaker-overview.md)
 
@@ -99,27 +99,27 @@ ___
 
 			
 
-	- <a name="corosync">Corosync</a>
+	- <a name="corosync">A.2.4 Corosync</a>
 
 		+ Là một cơ sở hạ tầng mức độ thấp cung cấp thông tin tin cậy, thành viên và những thông tin quy định về cluster
 		+ Trong cấp cả các ha cluster stack hiện tại, corosync là một giải pháp mặc định. Điều này có nghĩa rằng ta nên sử dụng corosync trong mọi trường hợp. Đôi khi, trong một vài trường hợp đặc biệt, corosync sẽ không làm việc.
 
-	- <a name="quorum">Quorum</a>
+	- <a name="quorum">A.2.5 Quorum</a>
 
 		+ Để duy trì tính toàn vẹn và tính có sẵn của cluster, các hệ thống cluster sử dụng khái niệm này để biết đến như là số lượng đa số để năng ngừa sự mất mát dữ liệu.
 		+ Là giải pháp tránh trường hợp "split brain"
 		[Xem thêm](quorum-overview.md)
 
-	- <a name="stonith">STONITH/ Fencing</a>
+	- <a name="stonith">A.2.6 STONITH/ Fencing</a>
 
 		+ STONITH là viết tắt của cụm từ `Shoot Other Node In The Head` đây là một kỹ thuật dành cho fencing.
 		+ Khởi động lại hoặt tắt hẳn các node bị lỗi trong cluster
 		+ Dùng để bảo vệ dữ liệu tránh sự mất mát trong trường hợp sử dụng storage shared
 		+ Lý do cần dùng đến cơ chế STONITH:
 
-			- Giả sử trong một cluster có một node A bị lỗi. Node A sẽ được khởi động lại và được thêm lại vào cluster một lần nữa. Điều này có vẻ đã được khắc phục lỗi. Nhưng nếu đây là một lỗi quan trọng và ngay sau khi khởi động lại node A. Node A vẫn gặp lại lỗi đó và lại được khởi động lại, điều này cứ lặp đi lặp lại như thế nhưng lỗi thì vẫn cứ lỗi. STONITH rất cần thiết trong trường hợp này và chúng ta cần cấu hình cho phép tắt node A này đi để ngăn việc node A cứ khởi động lại như vậy. [Xem thêm](fencing-overview.md)
+			- Giả sử trong một cluster có một node A bị lỗi. Node A sẽ được khởi động lại và được thêm lại vào cluster một lần nữa. Điều này có vẻ đã được khắc phục lỗi. Nhưng nếu đây là một lỗi quan trọng và ngay sau khi khởi động lại node A. Node A vẫn gặp lại lỗi đó và lại được khởi động lại, điều này cứ lặp đi lặp lại như thế nhưng lỗi thì vẫn cứ lỗi. STONITH rất cần thiết trong trường hợp này và chúng ta cần cấu hình cho phép tắt node A này đi để ngăn việc node A cứ khởi động lại như vậy. [Xem thêm](fencing-overview.md#whatis)
 			
-	- <a name="others-concept">Một vài thông tin khác</a>
+	- <a name="others-concept">A.2.7 Các port sử dụng cho HA cluster</a>
 
 		+ Trong một ha cluster yêu cầu chúng ta mở các ports tương ứng như sau:
 
@@ -132,6 +132,7 @@ ___
 
 - # <a name="content-others">Các nội dung khác</a>
 
-	Sẽ cập nhật sau.
-
-	+ [](#)
+- [B. Tổng quan về pacemaker](docs/pacemaker-overview.md)
+	- [B.1 Tổng quan về quorum](docs/quorum-overview.md)
+	- [B.2 Tổng quan về STONITH/ fencing](docs/fencing-overview.md)
+	- [B.3 Tổng quan về resource](docs/resource-overview.md)
