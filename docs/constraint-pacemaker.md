@@ -6,6 +6,7 @@ ____
 
 # Mục lục
 
+<<<<<<< HEAD
 - [5.1. Ràng buộc vị trí](#location-constraints)
 	- [5.1.1. Cấu hình một "Opt-In" Cluster](#opt-in)
 	- [5.1.2. Cấu hình một "Opt-Out" Cluster](#opt-out)
@@ -20,6 +21,22 @@ ____
 - [5.3.3. Colocation các tập resource](#sets-place)
 - [5.3.4. Xóa bỏ ràng buộc colocation](#colocation-remove)
 - [5.4. Hiển thị cấu hình các ràng buộc](#display-constraints)
+=======
+- [6.1. Ràng buộc vị trí](#location-constraints)
+	- [6.1.1. Cấu hình một "Opt-In" Cluster](#opt-in)
+	- [6.1.2. Cấu hình một "Opt-Out" Cluster](#opt-out)
+- [6.2. Ràng buộc về thứ tự](#order-constraints)
+	- [6.2.1. Thứ tự bắt buộc](#mand-order)
+	- [6.2.2. Thứ tự không bắt buộc](#advi-order)
+	- [6.2.3. Thứ tự tập các resource](#sets-order)
+	- [6.2.4. Xóa bỏ resource từ các ràng buộc thứ tự](#remove-order)
+- [6.3. Ràng buộc colocation của resources](#colocation-constraint)
+	- [6.3.1. Vị trí bắt buộc](#mand-place)
+	- [6.3.2. Vị trí không bắt buộc](#advi-place)
+	- [6.3.3. Colocation các tập resource](#sets-place)
+	- [6.3.4. Xóa bỏ ràng buộc colocation](#colocation-remove)
+- [6.4. Hiển thị cấu hình các ràng buộc](#display-constraints)
+>>>>>>> b07a42457724ac31d43ade6956c57c9d4fa55e86
 - [Các nội dung khác](#content-others)
 ____
 
@@ -282,6 +299,7 @@ ____
 
 # Các nội dung khác <a name="content-others"></a>
 
+<<<<<<< HEAD
 - [A. Tổng quan về High Availability](docs/ha-overview.md)
 	+ [A.1 Giới thiệu về High Availability](docs/ha-overview.md#whatis-ha)
 	+ [A.2 Các khái niệm, thuật ngữ cần biết trong HA](docs/ha-overview.md#concepts)
@@ -297,3 +315,6 @@ ____
 	- [B.1 Tổng quan về quorum](docs/quorum-overview.md)
 	- [B.2 Tổng quan về STONITH/ fencing](docs/fencing-overview.md)
 	- [B.3 Tổng quan về resource](docs/resource-overview.md)
+=======
+	Sẽ cập nhật sau
+>>>>>>> b07a42457724ac31d43ade6956c57c9d4fa55e86
