@@ -55,7 +55,13 @@ ___
 
 - # <a name="others-content">Các nội dung khác</a>
 
-- [B. Tổng quan về pacemaker](pacemaker-overview.md)
-	- [B.1 Tổng quan về quorum](quorum-overview.md)
-	- [B.2 Tổng quan về STONITH/ fencing](fencing-overview.md)
-	- [B.3 Tổng quan về resource](resource-overview.md)
+- [1. Cài đặt pacemaker](pacemaker-corosync-installing.md)
+	- [1.1 Môi trường cài đặt](pacemaker-corosync-installing.md#envir)
+	- [1.2 Mô hình hệ thống](pacemaker-corosync-installing.md#block)
+	- [1.3 IP Plan](pacemaker-corosync-installing.md#ipPlan)
+	- [1.4 Cài đặt nginx và modules](pacemaker-corosync-installing.md#nginx)
+	- [1.5 Kiểm tra cài đặt nginx](pacemaker-corosync-installing.md#test)
+	- [1.6 Cài đặt pacemaker và corosync để tạo cluster cho nginx](pacemaker-corosync-installing.md#pacemaker)
+	- [1.7 Cấu hình để thêm các resources vào Cluster](pacemaker-corosync-installing.md#configCluster)
+	- [1.8 Thêm resource NGINX để pacemaker quản lý.](pacemaker-corosync-installing.md#addResources)
+	- [1.9 Quản lý các resource với Web-GUI](pacemaker-corosync-installing.md#webgui)

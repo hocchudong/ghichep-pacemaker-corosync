@@ -247,7 +247,7 @@ ____
 
 	- Để xóa bảo ràng buộc colocation đã tạo. Ta sử dụng câu lệnh:
 
-		pcs constraint colocation remove source_resource target_resource [constraint_id]
+			pcs constraint colocation remove source_resource target_resource [constraint_id]
 
 	trong đó: constraint_id là tên của ràng buộc.
 
