@@ -76,12 +76,12 @@ ___
 	- [5.3.3. Colocation các tập hợp resource](docs/constraint-pacemaker.md#sets-place)
 	- [5.3.4. Xóa bỏ ràng buộc colocation](docs/constraint-pacemaker.md#colocation-remove)
 	- [5.4. Hiển thị cấu hình các ràng buộc](docs/constraint-pacemaker.md#display-constraints)
-
-- [E.1 Cài đặt pacemaker và tạo nginx.](docs/master-resource-pcmk.md#install)
-- [E.2 Cấu hình resource](docs/master-resource-pcmk.md#configure)
-	- [E.2.1 Sử dụng câu lệnh](docs/master-resource-pcmk.md#cmd)
-	- [E.2.2 Sử dụng giao diện website](docs/master-resource-pcmk.md#gui)
-	- [E.2.3 Khởi động lại dịch vụ trong cluster](docs/master-resource-pcmk.md#star)
+- [E. Thực hiện cấu hình tạo cluster với chế độ active/active](docs/master-resource-pcmk.md)
+	- [E.1 Cài đặt pacemaker và tạo nginx.](docs/master-resource-pcmk.md#install)
+	- [E.2 Cấu hình resource](docs/master-resource-pcmk.md#configure)
+		- [E.2.1 Sử dụng câu lệnh](docs/master-resource-pcmk.md#cmd)
+		- [E.2.2 Sử dụng giao diện website](docs/master-resource-pcmk.md#gui)
+		- [E.2.3 Khởi động lại dịch vụ trong cluster](docs/master-resource-pcmk.md#star)
 
 # Tài liệu tham khảo:
 
