@@ -55,7 +55,7 @@ ___
 
 - # <a name="others-content">Các nội dung khác</a>
 
-- [B. Tổng quan về pacemaker](docs/pacemaker-overview.md)
-	- [B.1 Tổng quan về quorum](docs/quorum-overview.md)
-	- [B.2 Tổng quan về STONITH/ fencing](docs/fencing-overview.md)
-	- [B.3 Tổng quan về resource](docs/resource-overview.md)
+- [B. Tổng quan về pacemaker](pacemaker-overview.md)
+	- [B.1 Tổng quan về quorum](quorum-overview.md)
+	- [B.2 Tổng quan về STONITH/ fencing](fencing-overview.md)
+	- [B.3 Tổng quan về resource](resource-overview.md)
