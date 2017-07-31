@@ -83,6 +83,14 @@ ___
 		- [E.2.2 Sử dụng giao diện website](docs/master-resource-pcmk.md#gui)
 		- [E.2.3 Khởi động lại dịch vụ trong cluster](docs/master-resource-pcmk.md#star)
 
+- [F. Cấu hình NFS trên 1 node chia sẻ dữ liệu cho các KVM trong Cluster](/docs/shared-storage-failover-pcmk.md)
+	- [F.1 Yêu cầu giải quyết](/docs/shared-storage-failover-pcmk.md#issue)
+	- [F.2 Mô hình triển khai](/docs/shared-storage-failover-pcmk.md#models)
+	- [F.3 Cài đặt KVM](/docs/shared-storage-failover-pcmk.md#kvm-settings)
+	- [F.4 Triển khai, cấu hình NFS](/docs/shared-storage-failover-pcmk.md#nfs)
+	- [F.5 Tạo resources quản lý KVM](/docs/shared-storage-failover-pcmk.md#resource)
+	- [F.6 Kiểm tra kết quả](/docs/shared-storage-failover-pcmk.md#stat)
+
 # Tài liệu tham khảo:
 
 - [High Availability Add-on](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/High_Availability_Add-On_Overview/ch-introduction-HAAO.html)

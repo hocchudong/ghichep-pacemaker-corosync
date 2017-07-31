@@ -24,7 +24,7 @@ ____
 		| pcs resource | Quản lý các resource trong cluster. Xem [Quản lý các resource](resource-pacemaker.md) để biết cách dùng câu lệnh|
 		| pcs constraint | Quản lý các ràng buộc của resource. Xem [Các ràng buộc resources trong pacemaker](constraint-pacemaker.md)|
 		| pcs status | Xem thông tin, trạng thái của cluster |
-		| pcs property | Thiết lập các giá trị cho chính sách PEengine. Để biết rõ về các giá trị cũng như chức năng của các giá trị. Chúng ta sử dụng câu lệnh `man peengine` |
+		| pcs property | Thiết lập các giá trị cho chính sách PEengine. Để biết rõ về các giá trị cũng như chức năng của các giá trị. Chúng ta sử dụng câu lệnh `man pengine` |
 ____
 
 
