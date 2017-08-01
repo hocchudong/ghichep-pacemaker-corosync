@@ -2,7 +2,7 @@ Mô hình:
 
 
 
-							| 10.10.10.0/24
+						| 10.10.10.0/24
        +----------------------------------------+
        |10.10.10.8                              |10.10.10.9
  +-----+-----+                          +-------+------+
@@ -18,20 +18,22 @@ Yêu cầu:
 
 1. Cấu hình trỏ host:
 
-		echo "10.10.10.8 lb01" >> /etc/hosts
-		echo "10.10.10.9 lb02" >> /etc/hosts
+	echo "10.10.10.8 lb01" >> /etc/hosts
+	echo "10.10.10.9 lb02" >> /etc/hosts
 
 2. Cài đặt rsync trên host lb01:
 
-		yum install -y rsync
+	yum install -y rsync
 
 3. Copy file rsyncssh tới /usr/bin và /usr/sbin
 4. Copy file rsyncssh.service tới /lib/systemd/system
 5. Cấp quyền thực thi cho rsyncssh.service:
+
 	chmod a+x /lib/systemd/system/rsyncssh.service
+
 6. Tạo thư mục /kvmpool trên cả 2 host lb01, lb02
 7. Khởi động rsyncssh.service:
 
-		systemctl start rsyncssh.service
-		systemctl enable rsyncssh.service
+	systemctl start rsyncssh.service
+	systemctl enable rsyncssh.service
 
