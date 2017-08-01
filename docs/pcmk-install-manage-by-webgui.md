@@ -158,7 +158,7 @@ ____
 
 		![images](../images/webgui/location.png)
 
-		cấu hình trên cho phép resource có thể chạy trên các node `lb01`, `lb03`. Mặc dù theo mặc định, thì nó có thể chạy trên tất cả các node. Xem thêm ý nghĩa của luật này tại [Các ràng buộc của resource trong cluster](constraint.md#location-constraints)
+		cấu hình trên cho phép resource có thể chạy trên các node `lb01`, `lb03`. Mặc dù theo mặc định, thì nó có thể chạy trên tất cả các node. Xem thêm ý nghĩa của luật này tại [Các ràng buộc của resource trong cluster](pcmk-constraint.md#location-constraints)
 
 
 	- Sau đó, cấu hình cho hai resource đã tạo phải chạy cùng trên một node vì. `Virtual_IP` là một resource cung cấp một địa chỉ IP ảo cho phép bạn truy cập tới tất cả các dịch vụ khác qua nó, mà Web thì rõ ràng là phải cần có địa chỉ để truy cập trong khi các resource lại không hoạt động cố định trên một node nào đó khi bạn chưa tạo ra các ràng buộc cho điều này. Để thực hiện điều này, bạn hãy lựa chọn và điền các giá trị giống như trong phần đóng khung màu đỏ của hình sau:
@@ -226,15 +226,15 @@ ____
 
 # <a name="contents-other">Các nội dung khác</a>
 
-- [3. Tạo và quản lý một cluster](create-cluster.md)
-	- [3. 1  Tạo một cluster](create-cluster.md#create)
-		- [3.1.1 Khởi động pacemaker](create-cluster.md#start)
-		- [3.1.2 Xác thực các node tham gia vào cluster](create-cluster.md#authen)
-		- [3.1.3 Cấu hình và khởi động các node trong cluster](create-cluster.md#cluster-nodes)
-		- [3.1.4 Enable và Disable các dịch vụ cluster](create-cluster.md#ed-services)
-	- [3.2 Quản lý các node trong cluster](create-cluster.md#man-node)
-		- [3.2.1 Dừng các dịch vụ trong cluster](create-cluster.md#stop-node)
-		- [3.2.2 Thêm node mới vào cluster](create-cluster.md#add-node)
-		- [3.2.3 Xóa bỏ node trong cluster](create-cluster.md#rem-node)
-	- [3.3 Xóa cấu hình cluster](create-cluster.md#rem-config)
-	- [3.4 Hiển thị trạng thái cluster](create-cluster.md#disp-stat)
+- [3. Tạo và quản lý một cluster](pcmk-create-cluster.md)
+	- [3. 1  Tạo một cluster](pcmk-create-cluster.md#create)
+		- [3.1.1 Khởi động pacemaker](pcmk-create-cluster.md#start)
+		- [3.1.2 Xác thực các node tham gia vào cluster](pcmk-create-cluster.md#authen)
+		- [3.1.3 Cấu hình và khởi động các node trong cluster](pcmk-create-cluster.md#cluster-nodes)
+		- [3.1.4 Enable và Disable các dịch vụ cluster](pcmk-create-cluster.md#ed-services)
+	- [3.2 Quản lý các node trong cluster](pcmk-create-cluster.md#man-node)
+		- [3.2.1 Dừng các dịch vụ trong cluster](pcmk-create-cluster.md#stop-node)
+		- [3.2.2 Thêm node mới vào cluster](pcmk-create-cluster.md#add-node)
+		- [3.2.3 Xóa bỏ node trong cluster](pcmk-create-cluster.md#rem-node)
+	- [3.3 Xóa cấu hình cluster](pcmk-create-cluster.md#rem-config)
+	- [3.4 Hiển thị trạng thái cluster](pcmk-create-cluster.md#disp-stat)

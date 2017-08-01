@@ -31,7 +31,7 @@ ____
 			pcs resource create	resource_id(name) standard:provider:type|type [resource options]
 
 		ví dụ:
-		Trong phần [overview](pacemaker-corosync-installing.md), ta đã gặp câu lệnh sau:
+		Trong phần [overview](pcmk-pacemaker-corosync-installing.md), ta đã gặp câu lệnh sau:
 
 			pcs resource create Virtual_IP ocf:heartbeat:IPaddr2 ip=172.16.69.254 cidr_netmask=24 op monitor interval=30s
 
@@ -40,7 +40,7 @@ ____
 			- pcs resource create: yêu cầu gọi chức năng của câu lệnh
 			- Virtual_IP: tên của resource hay resource_id
 			- ocf:heartbeat:IPaddr2: khai báo kiểu resource agent.
-			    Xem thêm tại [Resource Overview](resource-overview.md)
+			    Xem thêm tại [Resource Overview](pcmk-resource-overview.md)
 			- ip=172.16.69.254, cidr_netmask=24: các giá trị của resource.
 			- op monitor interval=30s: Khai báo các tùy chọn cho resource.
 				Xem thêm tại [Giám sát resource](#monitoring-resource)
@@ -76,7 +76,7 @@ ____
 
 			pcs resource list
 
-		xem thêm tại [Resource Overview](resource-overview.md#list)
+		xem thêm tại [Resource Overview](pcmk-resource-overview.md#list)
 
 - ### <a name="parameter">4.3. Các tham số cụ thể về resource</a>
 
@@ -328,18 +328,18 @@ ____
 
 # Các nội dung khác <a name="content-others"></a>
 
-- [5. Các ràng buộc trong pacemaker cho resource](constraint-pacemaker.md)
-	- [5.1. Ràng buộc vị trí](constraint-pacemaker.md#location-constraints)
-		- [5.1.1. Cấu hình một "Opt-In" Cluster](constraint-pacemaker.md#opt-in)
-		- [5.1.2. Cấu hình một "Opt-Out" Cluster](constraint-pacemaker.md#opt-out)
-	- [5.2. Ràng buộc về thứ tự](constraint-pacemaker.md#order-constraints)
-		- [5.2.1. Thứ tự cố định](constraint-pacemaker.md#mand-order)
-		- [5.2.2. Thứ tự linh động](constraint-pacemaker.md#advi-order)
-		- [5.2.3. Thứ tự tập hợp các resource](constraint-pacemaker.md#sets-order)
-		- [5.2.4. Xóa bỏ resource từ các ràng buộc thứ tự](constraint-pacemaker.md#remove-order)
-	- [5.3. Ràng buộc colocation của resources](constraint-pacemaker.md#colocation-constraint)
-	- [5.3.1. Vị trí cố định](constraint-pacemaker.md#mand-place)
-	- [5.3.2. Vị trí linh động](constraint-pacemaker.md#advi-place)
-	- [5.3.3. Colocation các tập hợp resource](constraint-pacemaker.md#sets-place)
-	- [5.3.4. Xóa bỏ ràng buộc colocation](constraint-pacemaker.md#colocation-remove)
-	- [5.4. Hiển thị cấu hình các ràng buộc](constraint-pacemaker.md#display-constraints)
+- [5. Các ràng buộc trong pacemaker cho resource](pcmk-constraint-pacemaker.md)
+	- [5.1. Ràng buộc vị trí](pcmk-constraint-pacemaker.md#location-constraints)
+		- [5.1.1. Cấu hình một "Opt-In" Cluster](pcmk-constraint-pacemaker.md#opt-in)
+		- [5.1.2. Cấu hình một "Opt-Out" Cluster](pcmk-constraint-pacemaker.md#opt-out)
+	- [5.2. Ràng buộc về thứ tự](pcmk-constraint-pacemaker.md#order-constraints)
+		- [5.2.1. Thứ tự cố định](pcmk-constraint-pacemaker.md#mand-order)
+		- [5.2.2. Thứ tự linh động](pcmk-constraint-pacemaker.md#advi-order)
+		- [5.2.3. Thứ tự tập hợp các resource](pcmk-constraint-pacemaker.md#sets-order)
+		- [5.2.4. Xóa bỏ resource từ các ràng buộc thứ tự](pcmk-constraint-pacemaker.md#remove-order)
+	- [5.3. Ràng buộc colocation của resources](pcmk-constraint-pacemaker.md#colocation-constraint)
+	- [5.3.1. Vị trí cố định](pcmk-constraint-pacemaker.md#mand-place)
+	- [5.3.2. Vị trí linh động](pcmk-constraint-pacemaker.md#advi-place)
+	- [5.3.3. Colocation các tập hợp resource](pcmk-constraint-pacemaker.md#sets-place)
+	- [5.3.4. Xóa bỏ ràng buộc colocation](pcmk-constraint-pacemaker.md#colocation-remove)
+	- [5.4. Hiển thị cấu hình các ràng buộc](pcmk-constraint-pacemaker.md#display-constraints)

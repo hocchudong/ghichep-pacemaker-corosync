@@ -212,9 +212,9 @@ ____
 
 # <a name="contents-other">Các nội dung khác</a>
 
-- [E. Thực hiện cấu hình tạo cluster với chế độ active/active](master-resource.md)
-	- [E.1 Cài đặt pacemaker và tạo nginx.](master-resource.md#install)
-	- [E.2 Cấu hình resource](master-resource.md#configure)
-		- [E.2.1 Sử dụng câu lệnh](master-resource.md#cmd)
-		- [E.2.2 Sử dụng giao diện website](master-resource.md#gui)
-		- [E.2.3 Khởi động lại dịch vụ trong cluster](master-resource.md#star)
+- [E. Thực hiện cấu hình tạo cluster với chế độ active/active](pcmk-master-resource.md)
+	- [E.1 Cài đặt pacemaker và tạo nginx.](pcmk-master-resource.md#install)
+	- [E.2 Cấu hình resource](pcmk-master-resource.md#configure)
+		- [E.2.1 Sử dụng câu lệnh](pcmk-master-resource.md#cmd)
+		- [E.2.2 Sử dụng giao diện website](pcmk-master-resource.md#gui)
+		- [E.2.3 Khởi động lại dịch vụ trong cluster](pcmk-master-resource.md#star)

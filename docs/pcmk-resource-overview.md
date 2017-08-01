@@ -55,13 +55,13 @@ ___
 
 - # <a name="others-content">Các nội dung khác</a>
 
-- [1. Cài đặt pacemaker](pacemaker-corosync-installing.md)
-	- [1.1 Môi trường cài đặt](pacemaker-corosync-installing.md#envir)
-	- [1.2 Mô hình hệ thống](pacemaker-corosync-installing.md#block)
-	- [1.3 IP Plan](pacemaker-corosync-installing.md#ipPlan)
-	- [1.4 Cài đặt nginx và modules](pacemaker-corosync-installing.md#nginx)
-	- [1.5 Kiểm tra cài đặt nginx](pacemaker-corosync-installing.md#test)
-	- [1.6 Cài đặt pacemaker và corosync để tạo cluster cho nginx](pacemaker-corosync-installing.md#pacemaker)
-	- [1.7 Cấu hình để thêm các resources vào Cluster](pacemaker-corosync-installing.md#configCluster)
-	- [1.8 Thêm resource NGINX để pacemaker quản lý.](pacemaker-corosync-installing.md#addResources)
-	- [1.9 Quản lý các resource với Web-GUI](pacemaker-corosync-installing.md#webgui)
+- [1. Cài đặt pacemaker](pcmk-pacemaker-corosync-installing.md)
+	- [1.1 Môi trường cài đặt](pcmk-pacemaker-corosync-installing.md#envir)
+	- [1.2 Mô hình hệ thống](pcmk-pacemaker-corosync-installing.md#block)
+	- [1.3 IP Plan](pcmk-pacemaker-corosync-installing.md#ipPlan)
+	- [1.4 Cài đặt nginx và modules](pcmk-pacemaker-corosync-installing.md#nginx)
+	- [1.5 Kiểm tra cài đặt nginx](pcmk-pacemaker-corosync-installing.md#test)
+	- [1.6 Cài đặt pacemaker và corosync để tạo cluster cho nginx](pcmk-pacemaker-corosync-installing.md#pacemaker)
+	- [1.7 Cấu hình để thêm các resources vào Cluster](pcmk-pacemaker-corosync-installing.md#configCluster)
+	- [1.8 Thêm resource NGINX để pacemaker quản lý.](pcmk-pacemaker-corosync-installing.md#addResources)
+	- [1.9 Quản lý các resource với Web-GUI](pcmk-pacemaker-corosync-installing.md#webgui)

@@ -57,9 +57,9 @@ ___
 		- [4.5.1. Các tùy chọn cho nhóm resource](docs/pcmk-resource.md#options-group)
 		- [4.5.2. Các gắn kết liên quan tới nhóm](docs/pcmk-resource.md#stickness)
 	- [4.6. Sự vận hành các resource](docs/pcmk-resource.md#operations)
-	- [4.7. Hiển thị cấu hình của resource](/resource.md#displaydocs-config)
-	- [4.8. Chỉnh sửa các tham số cụ thể của resource](/resource.md#modifieddocs-parameters)
-	- [4.9 Kích hoạt, vô hiệu hóa nhóm các resource](/resource.md#enablingdocs-disabling)
+	- [4.7. Hiển thị cấu hình của resource](pcmk-/resource.md#displaydocs-config)
+	- [4.8. Chỉnh sửa các tham số cụ thể của resource](pcmk-/resource.md#modifieddocs-parameters)
+	- [4.9 Kích hoạt, vô hiệu hóa nhóm các resource](pcmk-/resource.md#enablingdocs-disabling)
 	- [4.10. Xóa các cảnh báo của các resource](docs/pcmk-resource.md#cleanup)
 
 - [5. Các ràng buộc trong pacemaker cho resource](docs/pcmk-constraint.md)

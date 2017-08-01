@@ -84,7 +84,7 @@ ___
 
 	- <a name="pacemaker">A.2.3 Pacemaker</a>
 
-		- pacemaker là một cluster quản lý các resource, nó có khả năng hoạt động với hầu hết các dịch vụ cluster bằng cách phát hiện và phục hồi từ node và resource-level bằng các sử dụng khả năng trao đổi và các mối quan hệ được cung cấp bởi kiến trúc hạ tầng ưa thích của bạn ( Corosync hoặc Heartbeat). [Xem thêm](pacemaker-overview.md)
+		- pacemaker là một cluster quản lý các resource, nó có khả năng hoạt động với hầu hết các dịch vụ cluster bằng cách phát hiện và phục hồi từ node và resource-level bằng các sử dụng khả năng trao đổi và các mối quan hệ được cung cấp bởi kiến trúc hạ tầng ưa thích của bạn ( Corosync hoặc Heartbeat). [Xem thêm](pcmk-pacemaker-overview.md)
 
 		- Tính năng của pacemaker bao gồm:
 
@@ -108,7 +108,7 @@ ___
 
 		+ Để duy trì tính toàn vẹn và tính có sẵn của cluster, các hệ thống cluster sử dụng khái niệm này để biết đến như là số lượng đa số để năng ngừa sự mất mát dữ liệu.
 		+ Là giải pháp tránh trường hợp "split brain"
-		[Xem thêm](quorum-overview.md)
+		[Xem thêm](pcmk-quorum-overview.md)
 
 	- <a name="stonith">A.2.6 STONITH/ Fencing</a>
 
@@ -117,7 +117,7 @@ ___
 		+ Dùng để bảo vệ dữ liệu tránh sự mất mát trong trường hợp sử dụng storage shared
 		+ Lý do cần dùng đến cơ chế STONITH:
 
-			- Giả sử trong một cluster có một node A bị lỗi. Node A sẽ được khởi động lại và được thêm lại vào cluster một lần nữa. Điều này có vẻ đã được khắc phục lỗi. Nhưng nếu đây là một lỗi quan trọng và ngay sau khi khởi động lại node A. Node A vẫn gặp lại lỗi đó và lại được khởi động lại, điều này cứ lặp đi lặp lại như thế nhưng lỗi thì vẫn cứ lỗi. STONITH rất cần thiết trong trường hợp này và chúng ta cần cấu hình cho phép tắt node A này đi để ngăn việc node A cứ khởi động lại như vậy. [Xem thêm](fencing-overview.md#whatis)
+			- Giả sử trong một cluster có một node A bị lỗi. Node A sẽ được khởi động lại và được thêm lại vào cluster một lần nữa. Điều này có vẻ đã được khắc phục lỗi. Nhưng nếu đây là một lỗi quan trọng và ngay sau khi khởi động lại node A. Node A vẫn gặp lại lỗi đó và lại được khởi động lại, điều này cứ lặp đi lặp lại như thế nhưng lỗi thì vẫn cứ lỗi. STONITH rất cần thiết trong trường hợp này và chúng ta cần cấu hình cho phép tắt node A này đi để ngăn việc node A cứ khởi động lại như vậy. [Xem thêm](pcmk-fencing-overview.md#whatis)
 			
 	- <a name="others-concept">A.2.7 Các port sử dụng cho HA cluster</a>
 
@@ -132,7 +132,7 @@ ___
 
 - # <a name="content-others">Các nội dung khác</a>
 
-- [B. Tổng quan về pacemaker](pacemaker-overview.md)
-	- [B.1 Tổng quan về quorum](quorum-overview.md)
-	- [B.2 Tổng quan về STONITH/ fencing](fencing-overview.md)
-	- [B.3 Tổng quan về resource](resource-overview.md)
+- [B. Tổng quan về pacemaker](pcmk-pacemaker-overview.md)
+	- [B.1 Tổng quan về quorum](pcmk-quorum-overview.md)
+	- [B.2 Tổng quan về STONITH/ fencing](pcmk-fencing-overview.md)
+	- [B.3 Tổng quan về resource](pcmk-resource-overview.md)
