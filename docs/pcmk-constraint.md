@@ -157,7 +157,7 @@ ____
 
 	![set resource](../images/resource-set.png)
 
-	để giải quyết vấn đề trên, bạn có thể dùng đến việc quản lý các resource theo nhóm theo tài liệu tại [5.5. Các nhóm resource](docs/resource-pacemaker.md#groups) nếu như các resource này đều cùng nằm trên cùng 1 node. Tuy nhiên, nếu các resource này không cùng nằm trên một node. Bạn có thể tạo ra một ràng buộc trên một tập các node với câu lệnh:
+	để giải quyết vấn đề trên, bạn có thể dùng đến việc quản lý các resource theo nhóm theo tài liệu tại [5.5. Các nhóm resource](docs/resource.md#groups) nếu như các resource này đều cùng nằm trên cùng 1 node. Tuy nhiên, nếu các resource này không cùng nằm trên một node. Bạn có thể tạo ra một ràng buộc trên một tập các node với câu lệnh:
 
 		pcs constraint order set resource1 resource2 [resourceN]... [options] [set resourceX resourceY ... [options]] [setoptions [constraint_options]]
 

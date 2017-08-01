@@ -557,21 +557,21 @@
 
 - ### <a name="webgui">1.9 Quản lý các resource với Web-GUI</a>
 
-	- Để thực hiện cài đặt và quản lý cluster cùng các resource sử dụng giao diện web. Vui lòng xem thêm tại [Quản lý cluster và các resource sử dụng Web GUI](install-manage-by-webgui-pacemaker.md#webgui)
+	- Để thực hiện cài đặt và quản lý cluster cùng các resource sử dụng giao diện web. Vui lòng xem thêm tại [Quản lý cluster và các resource sử dụng Web GUI](install-manage-by-webgui.md#webgui)
 
 - # <a name="content-others">Các nội dung khác</a>
 
-- [3. Tạo và quản lý một cluster](create-cluster-pcmk.md)
-	- [3. 1  Tạo một cluster](create-cluster-pcmk.md#create)
-		- [3.1.1 Khởi động pacemaker](create-cluster-pcmk.md#start)
-		- [3.1.2 Xác thực các node tham gia vào cluster](create-cluster-pcmk.md#authen)
-		- [3.1.3 Cấu hình và khởi động các node trong cluster](create-cluster-pcmk.md#cluster-nodes)
-		- [3.1.4 Enable và Disable các dịch vụ cluster](create-cluster-pcmk.md#ed-services)
-	- [3.2 Quản lý các node trong cluster](create-cluster-pcmk.md#man-node)
-		- [3.2.1 Dừng các dịch vụ trong cluster](create-cluster-pcmk.md#stop-node)
-		- [3.2.2 Thêm node mới vào cluster](create-cluster-pcmk.md#add-node)
-		- [3.2.3 Xóa bỏ node trong cluster](create-cluster-pcmk.md#rem-node)
-	- [3.3 Xóa cấu hình cluster](create-cluster-pcmk.md#rem-config)
-	- [3.4 Hiển thị trạng thái cluster](create-cluster-pcmk.md#disp-stat)
+- [3. Tạo và quản lý một cluster](create-cluster.md)
+	- [3. 1  Tạo một cluster](create-cluster.md#create)
+		- [3.1.1 Khởi động pacemaker](create-cluster.md#start)
+		- [3.1.2 Xác thực các node tham gia vào cluster](create-cluster.md#authen)
+		- [3.1.3 Cấu hình và khởi động các node trong cluster](create-cluster.md#cluster-nodes)
+		- [3.1.4 Enable và Disable các dịch vụ cluster](create-cluster.md#ed-services)
+	- [3.2 Quản lý các node trong cluster](create-cluster.md#man-node)
+		- [3.2.1 Dừng các dịch vụ trong cluster](create-cluster.md#stop-node)
+		- [3.2.2 Thêm node mới vào cluster](create-cluster.md#add-node)
+		- [3.2.3 Xóa bỏ node trong cluster](create-cluster.md#rem-node)
+	- [3.3 Xóa cấu hình cluster](create-cluster.md#rem-config)
+	- [3.4 Hiển thị trạng thái cluster](create-cluster.md#disp-stat)
 
-- [E. Thực hiện cấu hình tạo cluster với chế độ active/active](master-resource-pcmk.md#configure)
+- [E. Thực hiện cấu hình tạo cluster với chế độ active/active](master-resource.md#configure)

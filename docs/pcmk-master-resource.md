@@ -27,7 +27,7 @@ ____
 	- Để tạo ra một resource với chế độ active/active. Ta cần xác định xem resource nào cần thực hiện như vậy? Với mô hình và 2 resource đã tạo ở phần E.1. Ta nhận thấy resource `Virtual_IP` là resource quan trọng nhất. Bởi nó quyết định cho việc client có thể truy cập tới dịch vụ website hay không? Nếu như resource `Virtual_IP` không thực sự hoạt động, client sẽ không biết đâu là địa chỉ để truy cập tới dịch vụ website. Để đảm bảo resource `Web_Cluster` và resource `Virtual_IP` luôn hoạt động cùng nhau, ta có thế thêm các ràng buộc bắt 2 resource:
 
 		1. Cùng hoạt động tại một node nào đó trong cluster (ràng buộc về vị trí hoặc đưa vào ràng buộc nhóm)
-		2. Resource `Virtual_IP` phải hoạt động thành công trên một node nào đó thì mới cấp phép hoạt động cho resource `Web_Cluster` (ràng buộc về thứ tự). Xem thêm tại [5. Các ràng buộc resources trong pacemaker](constraint-pacemaker.md)
+		2. Resource `Virtual_IP` phải hoạt động thành công trên một node nào đó thì mới cấp phép hoạt động cho resource `Web_Cluster` (ràng buộc về thứ tự). Xem thêm tại [5. Các ràng buộc resources trong pacemaker](constraint.md)
 	
 	- Cả 2 hướng giải quyết trên chỉ thực sự có hiệu quả khi và chỉ khi cả 2 resource `Virtual_IP` và `Web_Cluster` đều có thể hoạt động một ổn định trên bất kỳ node nào có mặt trong cluster. Vậy điều gì sẽ xảy ra khi mà resource `Virtual_IP` đang hoạt động trên node `lb01` và theo cấu hình ràng buộc cho resource trong cluster đối với `Web_Cluster` thì `Web_Cluster` cũng phải hoạt động trên node `lb01` nhưng vì một lí do oái ăm nào đó mà `Web_Cluster` lại không thể hoạt động được trên node `lb01`? Có khá là nhiều hướng giải quyết lúc này, chẳng hạn:
 
