@@ -7,6 +7,9 @@ ___
 
 # Nội dung
 
+
+## Phần 1: Lý thuyết
+
 - [A. Tổng quan về High Availability](docs/pcmk-ha-overview.md)
 	+ [A.1 Giới thiệu về High Availability](docs/pcmk-ha-overview.md#whatis-ha)
 	+ [A.2 Các khái niệm, thuật ngữ cần biết trong HA](docs/pcmk-ha-overview.md#concepts)
@@ -35,6 +38,7 @@ ___
 	- [1.9 Quản lý các resource với Web-GUI](docs/pcmk-pacemaker-corosync-installing.md#webgui)
 
 - [2. Các câu lệnh của pacemaker](docs/pcmk-cmd.md)
+
 - [3. Tạo và quản lý một cluster](docs/pcmk-create-cluster.md)
 	- [3. 1  Tạo một cluster](docs/pcmk-create-cluster.md#create)
 		- [3.1.1 Khởi động pacemaker](docs/pcmk-create-cluster.md#start)
@@ -78,6 +82,9 @@ ___
 	- [5.3.4. Xóa bỏ ràng buộc colocation](docs/pcmk-constraint.md#colocation-remove)
 	- [5.4. Hiển thị cấu hình các ràng buộc](docs/pcmk-constraint.md#display-constraints)
 	
+
+## Phần 2: Thực hành
+
 - [E. Thực hiện cấu hình tạo cluster với chế độ active/active](docs/pcmk-master-resource.md)
 	- [E.1 Cài đặt pacemaker và tạo nginx.](docs/pcmk-master-resource.md#install)
 	- [E.2 Cấu hình resource](docs/pcmk-master-resource.md#configure)
