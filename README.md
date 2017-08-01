@@ -34,7 +34,7 @@ ___
 	- [1.8 Thêm resource NGINX để pacemaker quản lý.](docs/pacemaker-corosync-installing.md#addResources)
 	- [1.9 Quản lý các resource với Web-GUI](docs/pacemaker-corosync-installing.md#webgui)
 
-- [2. Các câu lệnh của pacemaker](cmd-pcmk.md)
+- [2. Các câu lệnh của pacemaker](docs/cmd-pcmk.md)
 - [3. Tạo và quản lý một cluster](docs/create-cluster-pcmk.md)
 	- [3. 1  Tạo một cluster](docs/create-cluster-pcmk.md#create)
 		- [3.1.1 Khởi động pacemaker](docs/create-cluster-pcmk.md#start)
@@ -76,6 +76,20 @@ ___
 	- [5.3.3. Colocation các tập hợp resource](docs/constraint-pacemaker.md#sets-place)
 	- [5.3.4. Xóa bỏ ràng buộc colocation](docs/constraint-pacemaker.md#colocation-remove)
 	- [5.4. Hiển thị cấu hình các ràng buộc](docs/constraint-pacemaker.md#display-constraints)
+- [E. Thực hiện cấu hình tạo cluster với chế độ active/active](docs/master-resource-pcmk.md)
+	- [E.1 Cài đặt pacemaker và tạo nginx.](docs/master-resource-pcmk.md#install)
+	- [E.2 Cấu hình resource](docs/master-resource-pcmk.md#configure)
+		- [E.2.1 Sử dụng câu lệnh](docs/master-resource-pcmk.md#cmd)
+		- [E.2.2 Sử dụng giao diện website](docs/master-resource-pcmk.md#gui)
+		- [E.2.3 Khởi động lại dịch vụ trong cluster](docs/master-resource-pcmk.md#star)
+
+- [F. Cấu hình NFS trên 1 node chia sẻ dữ liệu cho các KVM trong Cluster](/docs/shared-storage-failover-pcmk.md)
+	- [F.1 Yêu cầu giải quyết](/docs/shared-storage-failover-pcmk.md#issue)
+	- [F.2 Mô hình triển khai](/docs/shared-storage-failover-pcmk.md#models)
+	- [F.3 Cài đặt KVM](/docs/shared-storage-failover-pcmk.md#kvm-settings)
+	- [F.4 Triển khai, cấu hình NFS](/docs/shared-storage-failover-pcmk.md#nfs)
+	- [F.5 Tạo resources quản lý KVM](/docs/shared-storage-failover-pcmk.md#resource)
+	- [F.6 Kiểm tra kết quả](/docs/shared-storage-failover-pcmk.md#stat)
 
 # Tài liệu tham khảo:
 
