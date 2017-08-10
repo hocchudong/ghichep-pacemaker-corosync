@@ -422,7 +422,7 @@
 	  pcs property set stonith-enabled=false
 	  ```
 
-	- Thiết lập policy cho cơ chế `quorum` (bỏ qua bước này nếu như bạn có chỉ có 2 node)
+	- Thiết lập policy cho cơ chế `quorum` (bỏ qua bước này nếu như cluster có nhiều hơn 2 node)
 	  ```sh
 	  pcs property set no-quorum-policy=ignore
 	  ```
