@@ -100,6 +100,23 @@ ___
 	- [F.5 Tạo resources quản lý KVM](docs/pcmk-shared-storage-failover.md#resource)
 	- [F.6 Kiểm tra kết quả](docs/pcmk-shared-storage-failover.md#stat)
 
+- [G. Tài liệu về HA Proxy.](#)
+	- [1. HA Proxy - High Availability Proxy](docs/ha-overview.md)
+		- [1.1 Mục đích sử dụng của HA Proxy](docs/ha-overview.md#about)
+		- [1.2 Cài đặt HA Proxy](docs/ha-overview.md#install)
+		- [1.3 Tổng quan về cấu trúc file cấu hình của HA Proxy](docs/ha-overview.md#instruc)
+	- [](#)
+	- [](#)
+	- [](#)
+	- [](#)
+	- [](#)
+	- [](#)
+	- [](#)
+	- [](#)
+	- [](#)
+	- [](#)
+	- [](#)
+	- [](#)
 # Tài liệu tham khảo:
 
 - [High Availability Add-on](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/High_Availability_Add-On_Overview/ch-introduction-HAAO.html)
