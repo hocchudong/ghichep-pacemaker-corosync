@@ -251,3 +251,13 @@ ____
 ____
 
 # <a name="content-others">Các nội dung khác</a>
+- [A. Tổng quan về High Availability](pcmk-ha-overview.md)
+	+ [A.1 Giới thiệu về High Availability](pcmk-ha-overview.md#whatis-ha)
+	+ [A.2 Các khái niệm, thuật ngữ cần biết trong HA](pcmk-ha-overview.md#concepts)
+		+ [A.2.1 Cluster](pcmk-ha-overview.md#whatis-cl)
+		+ [A.2.2 Resource](pcmk-ha-overview.md#resource)
+		+ [A.2.3 Pacemaker](pcmk-ha-overview.md#pacemaker)
+		+ [A.2.4 Corosync](pcmk-ha-overview.md#corosync)
+		+ [A.2.5 Quorum](pcmk-ha-overview.md#quorum)
+		+ [A.2.6 STONITH](pcmk-ha-overview.md#stonith)
+		+ [A.2.7 Các port sử dụng cho HA cluster](pcmk-ha-overview.md#others-concept)
