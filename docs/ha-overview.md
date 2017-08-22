@@ -1,138 +1,253 @@
-# A. Tổng quan về High Availability Cluster
+# 1. HA Proxy - High Availability Proxy
 
-___
-
+____
 
 # Mục lục
 
-+ [A.1 Giới thiệu về High Availability](#whatis-ha)
-+ [A.2 Các khái niệm, thuật ngữ cần biết trong HA](#concepts)
-	+ [A.2.1 Cluster](#whatis-cl)
-	+ [A.2.2 Resource](#resource)
-	+ [A.2.3 Pacemaker](#pacemaker)
-	+ [A.2.4 Corosync](#corosync)
-	+ [A.2.5 Quorum](#quorum)
-	+ [A.2.6 STONITH](#stonith)
-	+ [A.2.7 Các port sử dụng cho HA cluster](#others-concept)
+
+- [1.1 Mục đích sử dụng của HA Proxy](#about)
+- [1.2 Cài đặt HA Proxy](#install)
+- [1.3 Tổng quan về cấu trúc file cấu hình của HA Proxy](#instruc)
 - [Các nội dung khác](#content-others)
 
-___
+____
 
-# Nội dung
+# <a name="content">Nội dung</a>
 
-- <a name="whatis-ha">A.1 Giới thiệu về High Availability Cluster</a>
+- ### <a name="about">1.1 Mục đích sử dụng của HA Proxy</a>
+	- Là phần mềm cân bằng tải TCP/HTP và giải pháp proxy mã nguồn mở phổ biến, có thể chạy trên Linux, Solaris, và FreeBSD. Nó thường dùng để cải thiện hiệu suất (performance) và sự tin cậy (reliability) của môi trường máy chủ bằng cách phân tán lưu lượng tải (workload) trên nhiều máy chủ (như web, application, database)
 
-	- Mục đích của một HA (High Availability) cluster là đảm bảo rằng các tài nguyên quan trọng có thể được tận dụng một cách tối đa nhất có thể. Mục đích này được thực hiện bằng các cài đặt nhiều cluster software trên nhiều máy chủ. Các cluster software này theo dõi sự khả dụng của các node trong cluster.	Đòng thời giám sát sự khả dụng của các dịch vụ được quản lý bởi cluster như: File Share, File Storage, ... Nếu như các máy chủ này ngừng hoạt động hoặc các resource ngừng hoạt động thì ha cluster sẽ thông báo và đảm bảo rằng resource được khởi động lại ở một nơi nào đó trong cluster sao cho có thể sử dụng lại được resource đã ngừng hoạt động đó trong một khoảng thời gian tối thiểu.
+- ### <a name="install">1.2 Cài đặt HA Proxy</a>
 
-	- Để xây dựng lên một HA Cluster, ta sẽ cần nhiều hơn một máy chủ được gắn với nhau. Thông thường, thành phần của một HA Cluster được xây dựng bao gồm:
+	- Để cài đặt haproxy ta sử dụng câu lệnh sau:
+		đối với Centos:
 
-		- Shared Storage
+			yum install -y haproxy
 
-			+ Trong một cluster, đây là máy chủ được quy định dùng để chia sẻ resource. 
-			+ Có  hướng triển khai cho Shared Storage đó là:
+		đối với Ubuntu:
 
-				- NFS: Network File System
-				- SAN: Storage Area Network
-				- NAS: Network Attached Storage
+			apt-get install -y haproxy
 
-		- Different Networks 
+- ### <a name="instruc">1.3 Tổng quan về cấu trúc file cấu hình của HA Proxy</a>
+	- Sau khi cài đặt haproxy, ta sẽ quản lý các cấu hình của haproxy cho hệ thống với việc quản lý nội dung trong file `/etc/haproxy/haproxy.cfg`. File có nội dung tương tự như sau:
 
-			![dn](../images/dn.png)
+			#---------------------------------------------------------------------
+			# Example configuration for a possible web application.  See the
+			# full configuration options online.
+			#
+			#   http://haproxy.1wt.eu/download/1.4/doc/configuration.txt
+			#
+			#---------------------------------------------------------------------
 
-			+ Một cluster nên có nhiều kết nối mạng
+			#---------------------------------------------------------------------
+			# Global settings
+			#---------------------------------------------------------------------
+			global
+			    # to have these messages end up in /var/log/haproxy.log you will
+			    # need to:
+			    #
+			    # 1) configure syslog to accept network log events.  This is done
+			    #    by adding the '-r' option to the SYSLOGD_OPTIONS in
+			    #    /etc/sysconfig/syslog
+			    #
+			    # 2) configure local2 events to go to the /var/log/haproxy.log
+			    #   file. A line like the following can be added to
+			    #   /etc/sysconfig/syslog
+			    #
+			    #    local2.*                       /var/log/haproxy.log
+			    #
+			    log         127.0.0.1 local2
 
-				- Đường mạng cho user, từ đó user có thể truy xuất tới cluster resource.
-				- Đường mạng cho cluster, cần đảm bảo dự phòng cho đường này.
-				- Đường mạng cho storage, cấu hình dựa vào loại thiết bị lưu trữ sử dụng.
+			    chroot      /var/lib/haproxy
+			    pidfile     /var/run/haproxy.pid
+			    maxconn     4000
+			    user        haproxy
+			    group       haproxy
+			    daemon
 
-		- Bonded Network Devices
+			    # turn on stats unix socket
+			    stats socket /var/lib/haproxy/stats
 
-			- Để kết nối cluster node tới các dải mạng, chỉ dùng 1 card mạng (NIC). Nếu NIC đó lỗi, node sẽ mất kết nối trên dải mạng đó.
-			- Giải pháp là sử dụng network bonding. 1 network bond là một nhóm nhiều NIC. Thông thường, có 2 NIC trong 1 bond. Mục đích của bonding là dự phòng: đảm bảo nếu 1 NIC lỗi, NIC còn lại sẽ đảm bảo kết nối của node.
+			#---------------------------------------------------------------------
+			# common defaults that all the 'listen' and 'backend' sections will
+			# use if not designated in their block
+			#---------------------------------------------------------------------
+			defaults
+			    mode                    tcp
+			    log                     global
+			    option                  tcplog
+			    option                  dontlognull
+			    option http-server-close
+			    option forwardfor       except 127.0.0.0/8
+			    option                  redispatch
+			    retries                 3
+			    timeout http-request    10s
+			    timeout queue           1m
+			    timeout connect         10s
+			    timeout client          1m
+			    timeout server          1m
+			    timeout http-keep-alive 10s
+			    timeout check           10s
+			    maxconn                 3000
 
-		- Multipathing
+			#---------------------------------------------------------------------
+			# main frontend which proxys to the backends
+			#---------------------------------------------------------------------
+			frontend  main *:80
+			    acl url_static       path_beg       -i /static /images /javascript /stylesheets
+			    acl url_static       path_end       -i .jpg .gif .png .css .js
 
-			- Khi mà một nodes trong cluster được kết nối tới một SAN, thường có nhiều đường dẫn mà node nó thể theo dõi để xem LUN (Logical Unit Number) trên SAN. Vì vậy mà mọi đường đường mà node có thể đến LUN, nó sẽ nhận được một thiết bị. 
+			    use_backend static          if url_static
+			    default_backend             app
 
-			![lun](../images/lun.png)
+			#---------------------------------------------------------------------
+			# static backend for serving up images, stylesheets and such
+			#---------------------------------------------------------------------
+			backend static
+			    balance     roundrobin
+			    server      static 127.0.0.1:4331 check
 
+			#---------------------------------------------------------------------
+			# round robin balancing between the various backends
+			#---------------------------------------------------------------------
+			backend app
+			    balance     roundrobin
+			    server  app1 10.10.10.10:80 check
+			    server  app2 10.10.10.127:80 check
 
-		- Fencing/STONISH devices
-			
-			- Trong một cluster, trường hợp được gọi là "split brain" nên cần được tránh. "split brain" nghĩa là trường hợp mà cluster được chia làm hai phần hay nhiều hơn. Nhưng mỗi một phần này lại cho rằng chúng là phần còn lại duy nhất của cluster. Điều này có thể dẫn đến các tình huống xấu khi các phần của cluster cố gắng lưu trữ các tài nguyên được cung cấp bởi cluster. Nếu resource là một hệ thống tập tin và các node cố gắng ghi vào hệ thống tập tin đồng thời và không có sự phối hợp, sẽ dẫn tới tình trạng mất dữ liệu. Mà đây lại là mục đích hướng tới của một ha cluster thế nên cần phải tránh.
+	- Nhìn vào nội dung file trên, ta có thể thấy được rằng, 1 file cấu hình của haproxy cơ bản có 4 phần chính:
 
-			- Các giải pháp tránh tình huống "split brain":
+		- global
+		- defaults
+		- frontend
+		- backend
 
-				+ quorum
-				+ stonith/ fencing
+	- Chức năng của các phần được quy định cụ thể như sau:
 
+		- global: Đây là phần dùng để khai báo các cấu hình dùng chung các tham số liên quan đến hệ thống và chỉ khai báo một lần để dùng cho tất cả các phần khác trong file cấu hình. Có thể bao gồm các từ khóa:
 
-- <a name="concepts">A.2 Các khái niệm trong cần biết trong HA</a>
-	
-	- <a name="whatis-cl">A.2.1 Cluster</a>
+			 * Process management and security
+			   - ca-base
+			   - chroot
+			   - crt-base
+			   - cpu-map
+			   - daemon
+			   - description
+			   - deviceatlas-json-file
+			   - deviceatlas-log-level
+			   - deviceatlas-separator
+			   - deviceatlas-properties-cookie
+			   - external-check
+			   - gid
+			   - group
+			   - hard-stop-after
+			   - log
+			   - log-tag
+			   - log-send-hostname
+			   - lua-load
+			   - nbproc
+			   - node
+			   - pidfile
+			   - presetenv
+			   - resetenv
+			   - uid
+			   - ulimit-n
+			   - user
+			   - setenv
+			   - stats
+			   - ssl-default-bind-ciphers
+			   - ssl-default-bind-options
+			   - ssl-default-server-ciphers
+			   - ssl-default-server-options
+			   - ssl-dh-param-file
+			   - ssl-server-verify
+			   - unix-bind
+			   - unsetenv
+			   - 51degrees-data-file
+			   - 51degrees-property-name-list
+			   - 51degrees-property-separator
+			   - 51degrees-cache-size
+			   - wurfl-data-file
+			   - wurfl-information-list
+			   - wurfl-information-list-separator
+			   - wurfl-engine-mode
+			   - wurfl-cache-size
+			   - wurfl-useragent-priority
 
-		- `Cluster` là một nhóm gồm hai hay nhiều máy tính ( mỗi máy tính được gọi là một node hay member) hoạt động cùng với nhau để cung cấp một dịch vụ nào đó. Mỗi một node là một process hoạt động. Thường thì node được đồng nhất với một server do mỗi node thường được cài đặt trên một server riêng rẽ (để tránh bị chết chùm.) Mục đích của cluster là để:
+			 * Performance tuning
+			   - max-spread-checks
+			   - maxconn
+			   - maxconnrate
+			   - maxcomprate
+			   - maxcompcpuusage
+			   - maxpipes
+			   - maxsessrate
+			   - maxsslconn
+			   - maxsslrate
+			   - maxzlibmem
+			   - noepoll
+			   - nokqueue
+			   - nopoll
+			   - nosplice
+			   - nogetaddrinfo
+			   - noreuseport
+			   - spread-checks
+			   - server-state-base
+			   - server-state-file
+			   - tune.buffers.limit
+			   - tune.buffers.reserve
+			   - tune.bufsize
+			   - tune.chksize
+			   - tune.comp.maxlevel
+			   - tune.http.cookielen
+			   - tune.http.maxhdr
+			   - tune.idletimer
+			   - tune.lua.forced-yield
+			   - tune.lua.maxmem
+			   - tune.lua.session-timeout
+			   - tune.lua.task-timeout
+			   - tune.lua.service-timeout
+			   - tune.maxaccept
+			   - tune.maxpollevents
+			   - tune.maxrewrite
+			   - tune.pattern.cache-size
+			   - tune.pipesize
+			   - tune.rcvbuf.client
+			   - tune.rcvbuf.server
+			   - tune.recv_enough
+			   - tune.sndbuf.client
+			   - tune.sndbuf.server
+			   - tune.ssl.cachesize
+			   - tune.ssl.lifetime
+			   - tune.ssl.force-private-cache
+			   - tune.ssl.maxrecord
+			   - tune.ssl.default-dh-param
+			   - tune.ssl.ssl-ctx-cache-size
+			   - tune.vars.global-max-size
+			   - tune.vars.proc-max-size
+			   - tune.vars.reqres-max-size
+			   - tune.vars.sess-max-size
+			   - tune.vars.txn-max-size
+			   - tune.zlib.memlevel
+			   - tune.zlib.windowsize
 
-			+ Storage
-			+ High Availability
-			+ Load Balancing
-			+ High Performance
+			 * Debugging
+			   - debug
+			   - quiet
 
-	- <a name="resource">A.2.2 Resource</a>
+		- defaults: Khai báo các cấu hình cùng với các thông số mặc định cho tất cả các phần khác nhau trong file cấu hình sau sự xuất hiện khai báo `defaults`. Để có thể thay đổi giá trị của các tham số trong nó ứng với các trường hợp, ta cần phải viết lại khai báo cấu hình đó trong một phần khác của file cấu hình hoặc đưa vào trong một phần `defaults` mới.
 
-		- `resource` trong cluster có thể được biết đến như các dịch vụ mà cluster cung cấp.
+		- frontend: khai báo cấu hình và cách thức các request sẽ được chuyển hướng đến backends. Trong phần này thường bao gồm các thành phần sau:
 
-	- <a name="pacemaker">A.2.3 Pacemaker</a>
+			- ACLs
+			- Các quy tắc để sử dụng backends phù hợp hoặc sử dụng một defaults backends phụ thuộc vào điều kiện ACL.
+			- Tóm lại, nó dùng để khai báo danh sách các sockets đang lắng nghe kết nối để cho phép client kết nối tới.
 
-		- pacemaker là một cluster quản lý các resource, nó có khả năng hoạt động với hầu hết các dịch vụ cluster bằng cách phát hiện và phục hồi từ node và resource-level bằng các sử dụng khả năng trao đổi và các mối quan hệ được cung cấp bởi kiến trúc hạ tầng ưa thích của bạn ( Corosync hoặc Heartbeat). [Xem thêm](pacemaker-overview.md)
+		- backend: là phần khai báo danh sách các server mà các kết nối client sẽ được chuyển hướng tới đó với các thuật toán kèm theo như: round robin, health check, leastconn,...
 
-		- Tính năng của pacemaker bao gồm:
+		- Ngoài ra còn có các phần khác điển hình như `listen`. Phần này là tổ hợp khai báo của frontend và backend. Nó kém linh hoạt hơn khi sử dụng 2 phần frontend và backend riêng biệt. Nó thể hiện như là một cấu hình `tĩnh` trong file cấu hình haproxy.
 
-			+ Dò tìm và và khôi phục các dịch vụ lỗi
-			+ Không yêu cầu chia sẻ không gian lưu trữ
-			+ Hỗ trợ STONITH để đảm bảo tính toàn vẹn dữ liệu
-			+ Hỗ trợ những cluster lớn và nhỏ
-			+ Hỗ trợ hầu hết bất cứ cấu hình dự phòng nào
-			+ Tự động tạo bản sao cấu hình vì vậy có thể cập nhật từ bất kì node nào
-			+ Hỗ trợ những kiểu dịch vụ được mở rộng
-			+ Thống nhất, có kịch bản, những công cụ quản lý cluster.
+	- Ý nghĩa của các dòng cấu hình cơ bản trong haproxy sẽ được nói rõ hơn vào các phần sau.
+____
 
-			
-
-	- <a name="corosync">A.2.4 Corosync</a>
-
-		+ Là một cơ sở hạ tầng mức độ thấp cung cấp thông tin tin cậy, thành viên và những thông tin quy định về cluster
-		+ Trong cấp cả các ha cluster stack hiện tại, corosync là một giải pháp mặc định. Điều này có nghĩa rằng ta nên sử dụng corosync trong mọi trường hợp. Đôi khi, trong một vài trường hợp đặc biệt, corosync sẽ không làm việc.
-
-	- <a name="quorum">A.2.5 Quorum</a>
-
-		+ Để duy trì tính toàn vẹn và tính có sẵn của cluster, các hệ thống cluster sử dụng khái niệm này để biết đến như là số lượng đa số để năng ngừa sự mất mát dữ liệu.
-		+ Là giải pháp tránh trường hợp "split brain"
-		[Xem thêm](quorum-overview.md)
-
-	- <a name="stonith">A.2.6 STONITH/ Fencing</a>
-
-		+ STONITH là viết tắt của cụm từ `Shoot Other Node In The Head` đây là một kỹ thuật dành cho fencing.
-		+ Khởi động lại hoặt tắt hẳn các node bị lỗi trong cluster
-		+ Dùng để bảo vệ dữ liệu tránh sự mất mát trong trường hợp sử dụng storage shared
-		+ Lý do cần dùng đến cơ chế STONITH:
-
-			- Giả sử trong một cluster có một node A bị lỗi. Node A sẽ được khởi động lại và được thêm lại vào cluster một lần nữa. Điều này có vẻ đã được khắc phục lỗi. Nhưng nếu đây là một lỗi quan trọng và ngay sau khi khởi động lại node A. Node A vẫn gặp lại lỗi đó và lại được khởi động lại, điều này cứ lặp đi lặp lại như thế nhưng lỗi thì vẫn cứ lỗi. STONITH rất cần thiết trong trường hợp này và chúng ta cần cấu hình cho phép tắt node A này đi để ngăn việc node A cứ khởi động lại như vậy. [Xem thêm](fencing-overview.md#whatis)
-			
-	- <a name="others-concept">A.2.7 Các port sử dụng cho HA cluster</a>
-
-		+ Trong một ha cluster yêu cầu chúng ta mở các ports tương ứng như sau:
-
-			- 5404/udp - corosync
-			- 5405/udp - corosync
-			- 2224/tcp - pcsd
-			- 3121/tcp - pacemaker
-			- 21064/tcp - dlm
-___
-
-- # <a name="content-others">Các nội dung khác</a>
-
-- [B. Tổng quan về pacemaker](pacemaker-overview.md)
-	- [B.1 Tổng quan về quorum](quorum-overview.md)
-	- [B.2 Tổng quan về STONITH/ fencing](fencing-overview.md)
-	- [B.3 Tổng quan về resource](resource-overview.md)
+# <a name="content-others">Các nội dung khác</a>

@@ -22,7 +22,7 @@ ___
 	+ Dùng để bảo vệ dữ liệu tránh sự mất mát trong trường hợp sử dụng storage shared
 	+ Lý do cần dùng đến cơ chế STONITH:
 
-		- Giả sử trong một cluster có một node A bị lỗi. Node A sẽ được khởi động lại và được thêm lại vào cluster một lần nữa. Điều này có vẻ đã được khắc phục lỗi. Nhưng nếu đây là một lỗi quan trọng và ngay sau khi khởi động lại node A. Node A vẫn gặp lại lỗi đó và lại được khởi động lại, điều này cứ lặp đi lặp lại như thế nhưng lỗi thì vẫn cứ lỗi. STONITH rất cần thiết trong trường hợp này và chúng ta cần cấu hình cho phép tắt node A này đi để ngăn việc node A cứ khởi động lại như vậy. [Xem thêm](fencing-overview.md#whatis)
+		- Giả sử trong một cluster có một node A bị lỗi. Node A sẽ được khởi động lại và được thêm lại vào cluster một lần nữa. Điều này có vẻ đã được khắc phục lỗi. Nhưng nếu đây là một lỗi quan trọng và ngay sau khi khởi động lại node A. Node A vẫn gặp lại lỗi đó và lại được khởi động lại, điều này cứ lặp đi lặp lại như thế nhưng lỗi thì vẫn cứ lỗi. STONITH rất cần thiết trong trường hợp này và chúng ta cần cấu hình cho phép tắt node A này đi để ngăn việc node A cứ khởi động lại như vậy. [Xem thêm](pcmk-fencing-overview.md#whatis)
 
 
 +  <a name="whatis">Fencing là gì?</a>
@@ -32,7 +32,7 @@ ___
 
 - # <a name="others-content">Các nội dung khác</a>
 
-- [B. Tổng quan về pacemaker](pacemaker-overview.md)
-	- [B.1 Tổng quan về quorum](quorum-overview.md)
-	- [B.2 Tổng quan về STONITH/ fencing](fencing-overview.md)
-	- [B.3 Tổng quan về resource](resource-overview.md)
+- [B. Tổng quan về pacemaker](pcmk-pacemaker-overview.md)
+	- [B.1 Tổng quan về quorum](pcmk-quorum-overview.md)
+	- [B.2 Tổng quan về STONITH/ fencing](pcmk-fencing-overview.md)
+	- [B.3 Tổng quan về resource](pcmk-resource-overview.md)

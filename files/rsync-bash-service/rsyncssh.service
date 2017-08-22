@@ -1,0 +1,11 @@
+[Unit]
+Description=Run rsync to sync data from /kvmpool to a remote host.
+
+[Service]
+ExecStart=/usr/sbin/rsyncssh
+Restart=on-failure
+
+
+[Install]
+WantedBy=multi-user.target
+

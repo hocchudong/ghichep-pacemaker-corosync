@@ -63,7 +63,7 @@ ____
 
 			pcs property set symmetric-cluster=false
 
-	+ Giả sử, mô hình triển khia cluster có 3 node theo phần [Cài đặt pacemaker](pacemaker-corosync-installing.md#block). Tiếp theo ta cần cấu hình cho phép resource chỉ được hoạt động trên node nào bằng việc thực hiện các câu lệnh sau:
+	+ Giả sử, mô hình triển khia cluster có 3 node theo phần [Cài đặt pacemaker](pcmk-pacemaker-corosync-installing.md#block). Tiếp theo ta cần cấu hình cho phép resource chỉ được hoạt động trên node nào bằng việc thực hiện các câu lệnh sau:
 
 			pcs constraint location Virtual_IP prefers lb01
 			pcs constraint location Virtual_IP prefers lb03
@@ -86,7 +86,7 @@ ____
 
 		đây là hướng cấu hình mặc định, nếu như bạn chưa từng chỉnh sửa giá trị này thì có thể bỏ qua bước này.
 
-	+ Giả sử, mô hình triển khia cluster có 3 node theo phần [Cài đặt pacemaker](pacemaker-corosync-installing.md#block). Tiếp theo ta cần cấu hình cho phép resource chỉ được hoạt động trên node nào bằng việc thực hiện các câu lệnh sau:
+	+ Giả sử, mô hình triển khia cluster có 3 node theo phần [Cài đặt pacemaker](pcmk-pacemaker-corosync-installing.md#block). Tiếp theo ta cần cấu hình cho phép resource chỉ được hoạt động trên node nào bằng việc thực hiện các câu lệnh sau:
 
 			pcs constraint location Virtual_IP prefers lb01
 			pcs constraint location Virtual_IP avoids lb02
@@ -157,7 +157,7 @@ ____
 
 	![set resource](../images/resource-set.png)
 
-	để giải quyết vấn đề trên, bạn có thể dùng đến việc quản lý các resource theo nhóm theo tài liệu tại [5.5. Các nhóm resource](docs/resource-pacemaker.md#groups) nếu như các resource này đều cùng nằm trên cùng 1 node. Tuy nhiên, nếu các resource này không cùng nằm trên một node. Bạn có thể tạo ra một ràng buộc trên một tập các node với câu lệnh:
+	để giải quyết vấn đề trên, bạn có thể dùng đến việc quản lý các resource theo nhóm theo tài liệu tại [5.5. Các nhóm resource](docs/resource.md#groups) nếu như các resource này đều cùng nằm trên cùng 1 node. Tuy nhiên, nếu các resource này không cùng nằm trên một node. Bạn có thể tạo ra một ràng buộc trên một tập các node với câu lệnh:
 
 		pcs constraint order set resource1 resource2 [resourceN]... [options] [set resourceX resourceY ... [options]] [setoptions [constraint_options]]
 
@@ -282,18 +282,18 @@ ____
 
 # Các nội dung khác <a name="content-others"></a>
 
-- [A. Tổng quan về High Availability](ha-overview.md)
-	+ [A.1 Giới thiệu về High Availability](ha-overview.md#whatis-ha)
-	+ [A.2 Các khái niệm, thuật ngữ cần biết trong HA](ha-overview.md#concepts)
-		+ [A.2.1 Cluster](ha-overview.md#whatis-cl)
-		+ [A.2.2 Resource](ha-overview.md#resource)
-		+ [A.2.3 Pacemaker](ha-overview.md#pacemaker)
-		+ [A.2.4 Corosync](ha-overview.md#corosync)
-		+ [A.2.5 Quorum](ha-overview.md#quorum)
-		+ [A.2.6 STONITH](ha-overview.md#stonith)
-		+ [A.2.7 Các port sử dụng cho HA cluster](ha-overview.md#others-concept)
+- [A. Tổng quan về High Availability](pcmk-ha-overview.md)
+	+ [A.1 Giới thiệu về High Availability](pcmk-ha-overview.md#whatis-ha)
+	+ [A.2 Các khái niệm, thuật ngữ cần biết trong HA](pcmk-ha-overview.md#concepts)
+		+ [A.2.1 Cluster](pcmk-ha-overview.md#whatis-cl)
+		+ [A.2.2 Resource](pcmk-ha-overview.md#resource)
+		+ [A.2.3 Pacemaker](pcmk-ha-overview.md#pacemaker)
+		+ [A.2.4 Corosync](pcmk-ha-overview.md#corosync)
+		+ [A.2.5 Quorum](pcmk-ha-overview.md#quorum)
+		+ [A.2.6 STONITH](pcmk-ha-overview.md#stonith)
+		+ [A.2.7 Các port sử dụng cho HA cluster](pcmk-ha-overview.md#others-concept)
 
-- [B. Tổng quan về pacemaker](pacemaker-overview.md)
-	- [B.1 Tổng quan về quorum](quorum-overview.md)
-	- [B.2 Tổng quan về STONITH/ fencing](fencing-overview.md)
-	- [B.3 Tổng quan về resource](resource-overview.md)
+- [B. Tổng quan về pacemaker](pcmk-pacemaker-overview.md)
+	- [B.1 Tổng quan về quorum](pcmk-quorum-overview.md)
+	- [B.2 Tổng quan về STONITH/ fencing](pcmk-fencing-overview.md)
+	- [B.3 Tổng quan về resource](pcmk-resource-overview.md)

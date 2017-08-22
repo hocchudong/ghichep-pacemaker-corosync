@@ -422,7 +422,7 @@
 	  pcs property set stonith-enabled=false
 	  ```
 
-	- Thiết lập policy cho cơ chế `quorum` (bỏ qua bước này nếu như bạn có chỉ có 2 node)
+	- Thiết lập policy cho cơ chế `quorum` (bỏ qua bước này nếu như cluster có nhiều hơn 2 node)
 	  ```sh
 	  pcs property set no-quorum-policy=ignore
 	  ```
@@ -557,21 +557,21 @@
 
 - ### <a name="webgui">1.9 Quản lý các resource với Web-GUI</a>
 
-	- Để thực hiện cài đặt và quản lý cluster cùng các resource sử dụng giao diện web. Vui lòng xem thêm tại [Quản lý cluster và các resource sử dụng Web GUI](install-manage-by-webgui-pacemaker.md#webgui)
+	- Để thực hiện cài đặt và quản lý cluster cùng các resource sử dụng giao diện web. Vui lòng xem thêm tại [Quản lý cluster và các resource sử dụng Web GUI](pcmk-install-manage-by-webgui.md#webgui)
 
 - # <a name="content-others">Các nội dung khác</a>
 
-- [3. Tạo và quản lý một cluster](create-cluster-pcmk.md)
-	- [3. 1  Tạo một cluster](create-cluster-pcmk.md#create)
-		- [3.1.1 Khởi động pacemaker](create-cluster-pcmk.md#start)
-		- [3.1.2 Xác thực các node tham gia vào cluster](create-cluster-pcmk.md#authen)
-		- [3.1.3 Cấu hình và khởi động các node trong cluster](create-cluster-pcmk.md#cluster-nodes)
-		- [3.1.4 Enable và Disable các dịch vụ cluster](create-cluster-pcmk.md#ed-services)
-	- [3.2 Quản lý các node trong cluster](create-cluster-pcmk.md#man-node)
-		- [3.2.1 Dừng các dịch vụ trong cluster](create-cluster-pcmk.md#stop-node)
-		- [3.2.2 Thêm node mới vào cluster](create-cluster-pcmk.md#add-node)
-		- [3.2.3 Xóa bỏ node trong cluster](create-cluster-pcmk.md#rem-node)
-	- [3.3 Xóa cấu hình cluster](create-cluster-pcmk.md#rem-config)
-	- [3.4 Hiển thị trạng thái cluster](create-cluster-pcmk.md#disp-stat)
+- [3. Tạo và quản lý một cluster](pcmk-create-cluster.md)
+	- [3. 1  Tạo một cluster](pcmk-create-cluster.md#create)
+		- [3.1.1 Khởi động pacemaker](pcmk-create-cluster.md#start)
+		- [3.1.2 Xác thực các node tham gia vào cluster](pcmk-create-cluster.md#authen)
+		- [3.1.3 Cấu hình và khởi động các node trong cluster](pcmk-create-cluster.md#cluster-nodes)
+		- [3.1.4 Enable và Disable các dịch vụ cluster](pcmk-create-cluster.md#ed-services)
+	- [3.2 Quản lý các node trong cluster](pcmk-create-cluster.md#man-node)
+		- [3.2.1 Dừng các dịch vụ trong cluster](pcmk-create-cluster.md#stop-node)
+		- [3.2.2 Thêm node mới vào cluster](pcmk-create-cluster.md#add-node)
+		- [3.2.3 Xóa bỏ node trong cluster](pcmk-create-cluster.md#rem-node)
+	- [3.3 Xóa cấu hình cluster](pcmk-create-cluster.md#rem-config)
+	- [3.4 Hiển thị trạng thái cluster](pcmk-create-cluster.md#disp-stat)
 
-- [E. Thực hiện cấu hình tạo cluster với chế độ active/active](master-resource-pcmk.md#configure)
+- [E. Thực hiện cấu hình tạo cluster với chế độ active/active](pcmk-master-resource.md#configure)
