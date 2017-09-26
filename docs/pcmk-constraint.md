@@ -103,6 +103,7 @@ ____
 			pcs constraint order [action] resource_id then [action] resource_id [options] 
 
 		trong đó:
+
 			- resource_id: tên của resource
 			- action: hành động của constraint
 
@@ -249,7 +250,9 @@ ____
 
 			pcs constraint colocation remove source_resource target_resource [constraint_id]
 
-	trong đó: constraint_id là tên của ràng buộc.
+	trong đó:
+
+		- constraint_id là tên của ràng buộc.
 
 
 - ### <a name="display-constraints">5.4. Hiển thị cấu hình các ràng buộc</a>

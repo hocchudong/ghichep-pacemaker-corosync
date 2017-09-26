@@ -76,10 +76,10 @@ ___
 		- [5.2.3. Thứ tự tập hợp các resource](docs/pcmk-constraint.md#sets-order)
 		- [5.2.4. Xóa bỏ resource từ các ràng buộc thứ tự](docs/pcmk-constraint.md#remove-order)
 	- [5.3. Ràng buộc colocation của resources](docs/pcmk-constraint.md#colocation-constraint)
-	- [5.3.1. Vị trí cố định](docs/pcmk-constraint.md#mand-place)
-	- [5.3.2. Vị trí linh động](docs/pcmk-constraint.md#advi-place)
-	- [5.3.3. Colocation các tập hợp resource](docs/pcmk-constraint.md#sets-place)
-	- [5.3.4. Xóa bỏ ràng buộc colocation](docs/pcmk-constraint.md#colocation-remove)
+		- [5.3.1. Vị trí cố định](docs/pcmk-constraint.md#mand-place)
+		- [5.3.2. Vị trí linh động](docs/pcmk-constraint.md#advi-place)
+		- [5.3.3. Colocation các tập hợp resource](docs/pcmk-constraint.md#sets-place)
+		- [5.3.4. Xóa bỏ ràng buộc colocation](docs/pcmk-constraint.md#colocation-remove)
 	- [5.4. Hiển thị cấu hình các ràng buộc](docs/pcmk-constraint.md#display-constraints)
 	
 
@@ -100,23 +100,7 @@ ___
 	- [F.5 Tạo resources quản lý KVM](docs/pcmk-shared-storage-failover.md#resource)
 	- [F.6 Kiểm tra kết quả](docs/pcmk-shared-storage-failover.md#stat)
 
-- G. Tài liệu về HA Proxy.
-	- [1. HA Proxy - High Availability Proxy](docs/ha-overview.md)
-		- [1.1 Mục đích sử dụng của HA Proxy](docs/ha-overview.md#about)
-		- [1.2 Cài đặt HA Proxy](docs/ha-overview.md#install)
-		- [1.3 Tổng quan về cấu trúc file cấu hình của HA Proxy](docs/ha-overview.md#instruc)
-	- [](#)
-	- [](#)
-	- [](#)
-	- [](#)
-	- [](#)
-	- [](#)
-	- [](#)
-	- [](#)
-	- [](#)
-	- [](#)
-	- [](#)
-	- [](#)
+- [G. Các tài liệu mở rộng liên quan đến Pacemaker - Corosync]
 # Tài liệu tham khảo:
 
 - [High Availability Add-on](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/High_Availability_Add-On_Overview/ch-introduction-HAAO.html)
