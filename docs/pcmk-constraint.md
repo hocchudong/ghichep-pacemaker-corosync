@@ -120,7 +120,7 @@ ____
 
 		| Trường | Giá trị và mô tả |
 		| ------------- | ------------- |
-		| kind | <ul><li>Optionnal: Chỉ áp dụng ràng buộc nếu cả hai resource đều đang hoạt động hoặc không hoạt động (Xem thêm)[#advi-order]</li><li>Mandatory (mặc định): Nếu resource đầu tiên khai bao mà không hoạt động hoặc không thể khởi động, thì resource thứ hai đã khai bao trong câu lệnh bắt buộc phải không được hoạt động (Xem thêm)[#mand-order]</li><li>Serialize: Đảm bảo rằng sẽ không có hành động dừng lại/ khởi động (stop/start) cùng xảy ra cho cùng một nhóm các resource</li></ul> |
+		| kind | <ul><li>Optionnal: Chỉ áp dụng ràng buộc nếu cả hai resource đều đang hoạt động hoặc không hoạt động [Xem thêm](#advi-order)</li><li>Mandatory (mặc định): Nếu resource đầu tiên khai bao mà không hoạt động hoặc không thể khởi động, thì resource thứ hai đã khai bao trong câu lệnh bắt buộc phải không được hoạt động [Xem thêm](#mand-order)</li><li>Serialize: Đảm bảo rằng sẽ không có hành động dừng lại/ khởi động (stop/start) cùng xảy ra cho cùng một nhóm các resource</li></ul> |
 		| symmetrical | <ul><li>true (mặc định): buộc các resource dừng hoạt động theo thứ tự ngược lại, resource khai bao sau sẽ dùng hoạt động trước rồi mới đến resource khai báo đầu tiên</li><li>false: Dừng hoạt động dịch vụ theo đúng thứ tự đã khai báo trong câu lệnh</li></ul> |
 		
 - ### <a name="mand-order">5.2.1. Thứ tự bắt buộc</a>
