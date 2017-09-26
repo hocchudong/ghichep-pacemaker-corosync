@@ -191,24 +191,24 @@ ____
 
         - Cuối cùng, ta sẽ tạo ra DRBD filesystem resource. Chạy các câu lệnh sau cũng trên node lb01:
 
-                Config CIB fs_cfg:
+            Config CIB fs_cfg:
 
-                    pcs cluster cib fs_cfg
+                pcs cluster cib fs_cfg
 
-                Tạo resource:
+            Tạo resource:
 
-                    pcs  -f fs_cfg resource create DrbdFS Filesystem device="/dev/drbd0" directory="/var/www/html" fstype="ext3"
+                pcs  -f fs_cfg resource create DrbdFS Filesystem device="/dev/drbd0" directory="/var/www/html" fstype="ext3"
 
-                Thiết lập các ràng buộc:
+            Thiết lập các ràng buộc:
 
-                    pcs  -f fs_cfg constraint colocation add DrbdFS with DrbdDataClone INFINITY with-rsc-role=Master
-                    pcs  -f fs_cfg constraint order promote DrbdDataClone then start DrbdFS
-                    pcs -f fs_cfg constraint colocation add Httpd with DrbdFS INFINITY
-                    pcs -f fs_cfg constraint order DrbdFS then Httpd
+                pcs  -f fs_cfg constraint colocation add DrbdFS with DrbdDataClone INFINITY with-rsc-role=Master
+                pcs  -f fs_cfg constraint order promote DrbdDataClone then start DrbdFS
+                pcs -f fs_cfg constraint colocation add Httpd with DrbdFS INFINITY
+                pcs -f fs_cfg constraint order DrbdFS then Httpd
 
-                Update thay đổi CIB:
+            Update thay đổi CIB:
 
-                    pcs cluster cib-push fs_cfg
+                pcs cluster cib-push fs_cfg
 
 - ### <a name="test">1.4 Kiểm tra kết quả</a>
 
@@ -228,7 +228,7 @@ ____
         3. Tắt node lb01 - node mà đang có Virtual_IP resource chạy trên đó. Sau đó lặp lại bước 2.
         4. Trên node có resource đang chạy, ta thực hiện kiểm tra thư mục `/var/www/html` và nhận thấy file `index.html` đã được xuất hiện trên node này. Trong khi ban đầu, ta không thấy nó. Chứng tỏ, việc triển khai đã thành công
 
-        Chúc bạn vui vẻ.
+        Chú<!--  --> bạn vui vẻ.
 ____
 
 # <a name="content-others">Các nội dung khác</a>
