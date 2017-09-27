@@ -140,6 +140,15 @@ ____
                     }
                 }
 
+            trong đó:
+                
+                - testdata1: là tên của resource DRBD
+                - Protocol C: giao thức nhân bản phổ biến. Các thao tác ghi cục bộ trên node chính được coi là hoàn thành ngay sau khi việc ghi dữ liệu trên local disk và remote disk (disk trên các node còn lại) đã được xác nhận.
+                - on lb01, on lb02, .. : Chỉ tên các node, có thể có trong file cấu hình hoặc không.
+                - device /dev/drbd0: Quy định tên logical volume trên các node. (drbd0 chính là tên của logical volume)
+                - disk /dev/vgdrbd/vol1: Quy định disk dành riêng cho sao lưu dữ liệu
+                - address 10.10.10.9:7788: Quy định địa chỉ IP của mỗi node, 7788 là port mặc định kết nối các host trong DRBD cluster.
+                
         - Trên cả 3 node, ta thực hiện chạy câu lệnh sau để khởi tạo DRBD storage và sau đó có thể khởi chạy cùng hệ thống:
 
                 drbdadm create-md testdata1
