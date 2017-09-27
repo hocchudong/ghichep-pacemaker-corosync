@@ -187,7 +187,7 @@ ____
 
             Tạo ra một clone resource:
 
-                pcs -f drbd_cfg resource master DrbdDataClone DrbdData master-max=1 master-node-max=1 clone-max=2 clone-node-max=1 notify=true
+                pcs -f drbd_cfg resource master DrbdDataClone DrbdData master-max=1 master-node-max=1 clone-max=3 clone-node-max=2 notify=true
 
             Update CIB:
 
