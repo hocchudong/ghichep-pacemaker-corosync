@@ -242,6 +242,9 @@ ____
         - Bước 4. Trên node có resource đang chạy, ta thực hiện kiểm tra thư mục `/var/www/html` và nhận thấy file `index.html` đã được xuất hiện trên node này. Trong khi ban đầu, ta không thấy nó. Chứng tỏ, việc triển khai đã thành công
 
         
+# Tham khảo:
+
+    - [Integrate DRBD with pacemaker clusters - learnitguide.net](http://www.learnitguide.net/2016/07/integrate-drbd-with-pacemaker-clusters.html)
 ____
 
 # <a name="content-others">Các nội dung khác</a>

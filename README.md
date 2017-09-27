@@ -101,6 +101,17 @@ ___
 	- [F.6 Kiểm tra kết quả](docs/pcmk-shared-storage-failover.md#stat)
 
 - [G. Các tài liệu mở rộng liên quan đến Pacemaker - Corosync]
+	[1. Sao chép dữ liệu lưu trữ sử dụng DRBD - Distributed Replicated Block Device kết hợp sử dụng Pacemaker.](docs/pcmk-drbd.md)
+		- [1.1 Yêu cầu giải quyết bài toán](docs/pcmk-drbd.md#issue)
+		- [1.2 Mô hình triển khai và các yêu cầu](docs/pcmk-drbd.md#models)
+		- [1.3 Tiến hành cài đặt](docs/pcmk-drbd.md#install)
+		    - [1.3.1 Cài đặt httpd - Web Server](docs/pcmk-drbd.md#httpd)
+		    - [1.3.2 Tạo, format ổ đĩa cho việc đồng bộ dữ liệu](docs/pcmk-drbd.md#format)
+		    - [1.3.3 Cài đặt DRBD và cấu hình](docs/pcmk-drbd.md#install-drbd)
+		    - [1.3.4 Cài đặt pacemaker và corosync](docs/pcmk-drbd.md#install-pcsd)
+		    - [1.3.5 Tạo cluster, thêm các resource và ràng buộc sử dụng pacemaker](docs/pcmk-drbd.md#pcsd-resource)
+		- [1.4 Kiểm tra kết quả](docs/pcmk-drbd.md#test)
+		
 # Tài liệu tham khảo:
 
 - [High Availability Add-on](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/High_Availability_Add-On_Overview/ch-introduction-HAAO.html)
