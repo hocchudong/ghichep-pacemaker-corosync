@@ -228,7 +228,7 @@ ____
         3. Tắt node lb01 - node mà đang có Virtual_IP resource chạy trên đó. Sau đó lặp lại bước 2.
         4. Trên node có resource đang chạy, ta thực hiện kiểm tra thư mục `/var/www/html` và nhận thấy file `index.html` đã được xuất hiện trên node này. Trong khi ban đầu, ta không thấy nó. Chứng tỏ, việc triển khai đã thành công
 
-        Chú<!--  --> bạn vui vẻ.
+        
 ____
 
 # <a name="content-others">Các nội dung khác</a>
