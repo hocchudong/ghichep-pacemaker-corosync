@@ -127,13 +127,13 @@ ____
                         meta-disk internal;
                     }
                     on lb02 {
-                        device /dev/sdb1;
+                        device /dev/drbd0;
                         disk /dev/vgdrbd/vol1;
                         address 10.10.10.9:7788;
                         meta-disk internal;
                     }
                     on lb03 {
-                        device /dev/sdb1;
+                        device /dev/drbd0;
                         disk /dev/vgdrbd/vol1;
                         address 10.10.10.10:7788;
                         meta-disk internal;
