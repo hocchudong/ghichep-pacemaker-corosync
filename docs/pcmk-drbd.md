@@ -95,6 +95,10 @@ ____
 
                     yum install -y kmod-drbd84 drbd84-utils
 
+                đối với các phiên bản của drbd84-utils trên Centos 7, nó đang tồn tại một lỗi khi tích hợp DRBD với Pacemaker trong quá trình tạo resource để quản lý DRBD. Để khắc phục lỗi này, ta cần chạy câu lệnh sau để download script của DRBD sử dụng cho việc tích hợp vào Pacemaker:
+
+                    curl -o /usr/lib/ocf/resource.d/linbit/drbd 'http://git.linbit.com/gitweb.cgi?p=drbd-utils.git;a=blob_plain;f=scripts/drbd.ocf;h=cf6b966341377a993d1bf5f585a5b9fe72eaa5f2;hb=c11ba026bbbbc647b8112543df142f2185cb4b4b'
+
         - Thực hiện restart lại cả 3 node, rồi sau đó ta chạy 2 câu lệnh sau để kiểm tra kết quả cài đặt đã thành công hay chưa trên cả 3 node:
 
                 modprobe drbd
@@ -223,10 +227,10 @@ ____
 
     - Để kiểm tra kết quả cho việc đồng bộ, ta làm như sau:
 
-        1. Kiểm tra thư mục `/var/www/html` trên node lb01, lb02, lb03. So sánh sự khác nhau giữa chúng:
-        2. Mở trình duyệt, truy cập tới địa chỉ: http://172.16.69.254 để xem nội dung
-        3. Tắt node lb01 - node mà đang có Virtual_IP resource chạy trên đó. Sau đó lặp lại bước 2.
-        4. Trên node có resource đang chạy, ta thực hiện kiểm tra thư mục `/var/www/html` và nhận thấy file `index.html` đã được xuất hiện trên node này. Trong khi ban đầu, ta không thấy nó. Chứng tỏ, việc triển khai đã thành công
+        Bước 1. Kiểm tra thư mục `/var/www/html` trên node lb01, lb02, lb03. So sánh sự khác nhau giữa chúng:
+        Bước 2. Mở trình duyệt, truy cập tới địa chỉ: http://172.16.69.254 để xem nội dung
+        Bước 3. Tắt node lb01 - node mà đang có Virtual_IP resource chạy trên đó. Sau đó lặp lại bước 2.
+        Bước 4. Trên node có resource đang chạy, ta thực hiện kiểm tra thư mục `/var/www/html` và nhận thấy file `index.html` đã được xuất hiện trên node này. Trong khi ban đầu, ta không thấy nó. Chứng tỏ, việc triển khai đã thành công
 
         
 ____
