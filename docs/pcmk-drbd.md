@@ -227,10 +227,10 @@ ____
 
     - Để kiểm tra kết quả cho việc đồng bộ, ta làm như sau:
 
-        Bước 1. Kiểm tra thư mục `/var/www/html` trên node lb01, lb02, lb03. So sánh sự khác nhau giữa chúng:
-        Bước 2. Mở trình duyệt, truy cập tới địa chỉ: http://172.16.69.254 để xem nội dung
-        Bước 3. Tắt node lb01 - node mà đang có Virtual_IP resource chạy trên đó. Sau đó lặp lại bước 2.
-        Bước 4. Trên node có resource đang chạy, ta thực hiện kiểm tra thư mục `/var/www/html` và nhận thấy file `index.html` đã được xuất hiện trên node này. Trong khi ban đầu, ta không thấy nó. Chứng tỏ, việc triển khai đã thành công
+        - Bước 1. Kiểm tra thư mục `/var/www/html` trên node lb01, lb02, lb03. So sánh sự khác nhau giữa chúng:
+        - Bước 2. Mở trình duyệt, truy cập tới địa chỉ: http://172.16.69.254 để xem nội dung
+        - Bước 3. Tắt node lb01 - node mà đang có Virtual_IP resource chạy trên đó. Sau đó lặp lại bước 2.
+        - Bước 4. Trên node có resource đang chạy, ta thực hiện kiểm tra thư mục `/var/www/html` và nhận thấy file `index.html` đã được xuất hiện trên node này. Trong khi ban đầu, ta không thấy nó. Chứng tỏ, việc triển khai đã thành công
 
         
 ____
