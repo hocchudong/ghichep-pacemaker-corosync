@@ -100,7 +100,6 @@ ___
 	- [F.5 Tạo resources quản lý KVM](docs/pcmk-shared-storage-failover.md#resource)
 	- [F.6 Kiểm tra kết quả](docs/pcmk-shared-storage-failover.md#stat)
 
-____
 
 - ## G. Các tài liệu mở rộng liên quan đến Pacemaker - Corosync
 	- [1. Sao chép dữ liệu lưu trữ sử dụng DRBD - Distributed Replicated Block Device kết hợp sử dụng Pacemaker.](docs/pcmk-drbd.md)
