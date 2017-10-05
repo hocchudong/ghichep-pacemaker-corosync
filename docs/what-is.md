@@ -50,7 +50,7 @@ ____
 
     - Khi các thiết lập hệ thống hoạt động một cách mạnh mẽ, giảm thiểu thời gian ngừng hoạt động và thời gian gián đoạn dịch vụ thường được xem là những ưu tiên cao. Bất kể hệ thống và phần mềm của bạn có đáng tin cậy hay không, các vẫn đề có thể xảy ra có thể làm gián đoạn các ứng dụng hoặc các máy chủ của bạn.
 
-    - Triển khai tính sẵn sàng coa cho cơ sở hạ tầng của bạn là một chiến lược hữu ích để giảm tác động của các loại sự cố. Các hệ thống sẵn sàng cao có thể phục hồi các hệ thống hoặc các thành phần của hệ thống bị hư hỏng một cách tự động.
+    - Triển khai tính sẵn sàng cao cho cơ sở hạ tầng của bạn là một chiến lược hữu ích để giảm tác động của các loại sự cố. Các hệ thống sẵn sàng cao có thể phục hồi các hệ thống hoặc các thành phần của hệ thống bị hư hỏng một cách tự động.
 
 
 - ### <a name="what-make">6. Điều gì tạo nên một hệ thống sẵn sàng cao?</a>
@@ -80,7 +80,7 @@ ____
 
             ![img](https://assets.digitalocean.com/articles/high-availability/Diagram_1.png)
 
-        - Đối với trường hợp cân bằng tải, tuy nhiên sẽ có một sự phức tạp thêm bởi cách làm việc của nameservers. Việc phục hồi từ một cân bằng tải lỗi thường có nghĩa là chuyển giao lại toàn bộ chức năng mà cân bằng tải lỗi này đang thực hiện sang cho một cân bằng tải dự phòng khác để nó tiếp tục đảm nhiệm, điều này có nghĩa rằng ta phải thay đổi DNS để thực hiện trở tên miền tới địa chỉ IP của cân bằng tải dự phòng. Việc thay đổi này có thể mất một khoảng thời gian để bộ cân bằng tải dự phòng xuất hiện trên Internet, điều này có thể dẫn đến hệ thống ngừng hoạt động một cách nghiêm trọng.
+        - Đối với trường hợp cân bằng tải, tuy nhiên sẽ có một sự phức tạp thêm bởi cách làm việc của nameservers. Việc phục hồi từ một cân bằng tải lỗi thường có nghĩa là chuyển giao lại toàn bộ chức năng mà cân bằng tải lỗi này đang thực hiện sang cho một cân bằng tải dự phòng khác để nó tiếp tục đảm nhiệm, điều này có nghĩa rằng ta phải thay đổi DNS để thực hiện trỏ tên miền tới địa chỉ IP của cân bằng tải dự phòng. Việc thay đổi này có thể mất một khoảng thời gian để bộ cân bằng tải dự phòng xuất hiện trên Internet, điều này có thể dẫn đến hệ thống ngừng hoạt động một cách nghiêm trọng.
 
         - Một giải pháp có thể sử dụng lúc này đó là sử dụng [cân bằng tải với DNS áp dụng thuật toán round-robin](https://www.digitalocean.com/community/tutorials/how-to-configure-dns-round-robin-load-balancing-for-high-availability). Tuy nhiên, cách tiếp cận này là không đáng tin cậy vì nó để lại việc chuyển đổi dự phòng ứng dụng phía clients.
 
