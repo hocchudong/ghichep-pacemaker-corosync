@@ -1,4 +1,4 @@
-# Tích hợp ZFS với Pacemaker và Corosync
+# 2. Tích hợp ZFS với Pacemaker và Corosync
 
 ____
 
@@ -6,8 +6,11 @@ ____
 
 
 - [1. ZFS là gì?](#what-is)
-- [2. Tích hợp ZFS với Pacemaker và Corosync](#integrate)
-- [3. Kiểm tra kết quả](#checksummed)
+- [2. Storage pools](s-pools)
+- [3. Toàn vẹn dữ liệu](#di)
+- [4. Snapshot](#ss)
+- [5. Tích hợp ZFS với Pacemaker và Corosync](#integrate)
+- [6. Kiểm tra kết quả](#checksummed)
 - [Các nội dung khác](#content-others)
 
 ____
@@ -18,7 +21,35 @@ ____
 
     - ZFS (Zettabyte File System) là sự kết hợp giữa Volume Manager và Filesystem hoạt động cơ bản bằng việc thay đổi cách mà file systems quản lý với nhiều tính năng và lợi ích mà không thế tìm thấy trong bất kỳ hệ thống hiện có ngày nay. ZFS hoạt động một cách mạnh mẽ và dễ dàng để quản lý.
 
-- ### <a name="integate">2. Tích hợp ZFS với Pacemaker và Corosync</a>
+    - Nó cung cấp không gian lưu trữ rộng hơn cho các tập tin, tăng cường quản lý và cải thiện đáng kể cho việc lưu trữ dữ liệu toàn vẹn.
+
+    - ZFS sử dụng lược đồ định địa chỉ 128-bit và có thể lưu trữ tới 275 tỷ TB mỗi vùng lưu trữ. Giới hạn công suất của ZFS rất xa so với khả năng không thể tưởng tượng được.
+
+
+- ### <a name="s-pools">2. Storage pools</a>
+
+    - ZFS không có khái niệm về dung lượng đĩa, phân vùng cung cấp đĩa bằng cách sử dụng lưu trữ chung, trong đó tất cả các ổ đĩa cứng có sẵn trong một hệ thống đều được kết hợp với nhau. Băng thông kết hợp của các thiết bị gộp lại có sẵn cho ZFS, có hiệu quả tối đa hóa không gian lưu trữ, tốc độ và tính khả dụng.
+
+    - ZFS có sẵn ổ đĩa lưu trữ và tập hợp chúng lại với nhau như một ổ đĩa duy nhất, được gọi là "zpool". Điều này có thể được tối ưu hóa về dung lượng, hiệu năng I / O hoặc sự dư thừa, sử dụng striping, mirroring hoặc một số dạng RAID. Nếu cần thêm dung lượng lưu trữ, thì có thể thêm nhiều ổ đĩa vào zpool. ZFS nhìn thấy ổ đĩa mới và bắt đầu sử dụng nó một cách tự động, cân bằng I / O và tối đa hóa thông lượng.
+
+    - Hệ thống tập tin không còn bị ràng buộc với các thiết bị riêng lẻ, cho phép chia sẻ không gian đĩa với tất cả các hệ thống tập tin trong zpool. Bạn không cần phải xác định trước kích thước của một hệ thống tập tin, như các hệ thống tập tin phát triển tự động trong không gian đĩa được phân bổ cho các pool lưu trữ. Khi mới lưu trữ được thêm vào, tất cả các hệ thống tập tin trong pool có thể ngay lập tức sử dụng không gian đĩa bổ sung mà không cần làm việc thêm.
+
+
+- ### <a name="di">3. Toàn vẹn dữ liệu</a>
+
+    - Một tính năng chính khác biệt ZFS từ các hệ thống tập tin khác là ZFS được thiết kế với sự tập trung vào tính toàn vẹn dữ liệu. Đó là, nó được thiết kế để bảo vệ dữ liệu trên đĩa chống lại các lỗi liên quan đến dữ liệu, lỗi trong phần mềm của đĩa, phantom writes, đọc sai / ghi sai, các lỗi bộ nhớ giữa mảng và bộ nhớ máy chủ, vô tình ghi đè.
+
+    - ZFS đảm bảo rằng dữ liệu luôn luôn nhất quán trên đĩa bằng cách sử dụng một số kỹ thuật, bao gồm bản sao chép. Điều này có nghĩa là khi dữ liệu được thay đổi, nó không bị ghi đè - nó luôn được ghi vào một khối mới và được kiểm tra trước khi các con trỏ tới dữ liệu được thay đổi. Dữ liệu cũ có thể được giữ lại, tạo ảnh chụp nhanh dữ liệu (snapshot data) qua thời gian khi có thay đổi.
+
+
+- ### <a name="ss">4. Snapshot</a>
+
+    - Một lợi thế của copy-on-write là, khi ZFS viết dữ liệu mới, các khối chứa dữ liệu cũ có thể được giữ lại, cho phép duy trì một phiên bản snapshot của hệ thống tập tin. Ảnh chụp nhanh ZFS được tạo ra rất nhanh chóng, vì tất cả dữ liệu tạo ảnh chụp nhanh đã được lưu trữ.
+
+    - Ngoài ra, ZFS còn có một số tính năng hữu ích khác, có thể xem [tại đây](http://www.zeta.systems/zetavault/what-is-zfs/)
+
+
+- ### <a name="integate">5. Tích hợp ZFS với Pacemaker và Corosync</a>
 
     - Đầu tiên, ta cần tạo ra một cluster sử dụng Pacemaker và Corosync. Mô hình của toàn bộ hệ thống thực hiện lab giống như sau:
 
@@ -232,7 +263,8 @@ ____
 
     - Cho phép zfs tự động mount disk và khởi động cùng hệ thống:
 
-            systemctl enable zfs-import-cache.service zfs-mount.service zfs-share.service zfs-zed.service zfs.target
+            systemctl enable zfs-import-cache.service zfs-mount.service \
+            zfs-share.service zfs-zed.service zfs.target
 
     - Việc cuối cùng dành cho bước cài đặt `zfs` này là, ta cần import module của zfs vào trong kernel bằng việc sử dụng câu lệnh:
 
@@ -245,7 +277,8 @@ ____
         trong đó:
 
             - vol1 là tên của storage pool
-            - /dev/sdb và /dev/sdc là đường mount của 2 đĩa disk mà bạn muốn dùng nó để gộp lại thành một storage pool
+            - /dev/sdb và /dev/sdc là đường mount của 2 đĩa disk mà bạn muốn dùng nó
+                                   để gộp lại thành một storage pool
 
         bạn có thể lấy thông tin về đường dẫn disk qua việc sử dụng câu lệnh:
 
@@ -362,7 +395,8 @@ ____
             - 10.10.10.0/24: là dải mạng mà các máy chủ phải nằm trong đó mới có thể sử dụng 
                              (tùy chọn này không bắt buộc phải khai báo)
             - rw: là quyền được phép của các máy chủ khi sử dụng. Ở đây là Read và Write
-            - Các tham số khác có thể xem thêm ở đây: https://www.server-world.info/en/note?os=CentOS_7&p=nfs&f=1
+            - Các tham số khác có thể xem thêm ở đây: 
+              https://www.server-world.info/en/note?os=CentOS_7&p=nfs&f=1
 
         Hãy tạo một vài nội dung như: tạo một thư mục, một file vào trong thư mục /vol1 để thuận tiện cho bước kiểm tra kết quả ở phía dưới. Ví dụ:
 
@@ -371,7 +405,7 @@ ____
             mkdir private
             touch nfs.conf
 
-- ### <a name="checksummed">3. Kiểm tra kết quả</a>
+- ### <a name="checksummed">6. Kiểm tra kết quả</a>
 
     - Trên 2 node `backends01` và `backends02`, ta thực hiện cài đặt NFS theo hướng dẫn như sau trên cả 2 node như sau:
 
@@ -445,5 +479,10 @@ ____
 
         
 ____
+
+# Tài liệu tham khảo
+
+    - [ZFS High-Availability NAS](https://github.com/ewwhite/zfs-ha/wiki)
+    - [What is ZFS? - Zeta Storage Systems](http://www.zeta.systems/zetavault/what-is-zfs/)
 
 # <a name="content-others">Các nội dung khác</a>

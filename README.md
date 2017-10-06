@@ -129,6 +129,14 @@ ____
 			- [1.3.5 Tạo cluster, thêm các resource và ràng buộc sử dụng pacemaker](docs/pcmk-drbd.md#pcsd-resource)
 		- [1.4 Kiểm tra kết quả](docs/pcmk-drbd.md#test)
 		
+	- [2. Tích hợp ZFS với Pacemaker và Corosync](docs/pcmk-zfs.md)
+		- [1. ZFS là gì?](docs/pcmk-zfs.md#what-is)
+		- [2. Storage pools](docs/pcmk-zfs.mds-pools)
+		- [3. Toàn vẹn dữ liệu](docs/pcmk-zfs.md#di)
+		- [4. Snapshot](docs/pcmk-zfs.md#ss)
+		- [5. Tích hợp ZFS với Pacemaker và Corosync](docs/pcmk-zfs.md#integrate)
+		- [6. Kiểm tra kết quả](docs/pcmk-zfs.md#checksummed)
+		
 # Tài liệu tham khảo:
 
 - [High Availability Add-on](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/High_Availability_Add-On_Overview/ch-introduction-HAAO.html)
