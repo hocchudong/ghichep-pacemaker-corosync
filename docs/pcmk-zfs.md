@@ -22,6 +22,13 @@ ____
 
     - Đầu tiên, ta cần tạo ra một cluster sử dụng Pacemaker và Corosync. Mô hình của toàn bộ hệ thống thực hiện lab giống như sau:
 
+        ![img](../images/models-zfs.png)
+
+
+        với địa chỉ IP cho các máy được sử dụng như sau:
+
+        ![img](../images/ip-zfs.png)
+
 
     - Trên 2 node `lb01` và `lb02`, ta thực hiện cài đặt Pacemaker và Corosync để có thể tạo ra được 1 cluster từ 2 node này:
     
@@ -36,8 +43,160 @@ ____
 
             systemctl enable pcsd
             systemctl enable corosync
+    
+    + Thực hiện cấu hình trỏ host và proxy cho os để tăng tốc độ cài đặt
 
-    - Tiếp theo, ta cần thực hiện cài đặt `zfs` trên cả 2 node `ha-zfs01` và `ha-zfs02`, thực hiện chạy câu lệnh sau trên cả 2 node:
+            echo "127.0.0.1        localhost" > /etc/hosts
+            echo "10.10.10.8       lb01" >> /etc/hosts
+            echo "10.10.10.9       lb02" >> /etc/hosts
+            echo "10.10.10.20      be01" >> /etc/hosts
+            echo "10.10.10.30      be02" >> /etc/hosts
+            echo "10.10.10.150      zfs" >> /etc/hosts
+
+    - Ta cần phải tắt firewalld trên cả 2 node `lb01` và `lb02`:
+
+            sudo systemctl disable firewalld
+            sudo systemctl stop firewalld
+
+            sed -i 's/SElinux=enforcing/SElinux=disabled/g' /etc/sysconfig/SElinux
+            sed -i 's/SElinux=enforcing/SElinux=disabled/g' /etc/SElinux/config
+
+            init 6
+
+    - Kiểm tra lại trạng thái của `pacemaker` bằng lệnh `systemctl status pcsd`, kết quả như sau:
+
+            Loaded: loaded (/usr/lib/systemd/system/pcsd.service; enabled; vendor preset: disabled)
+            Active: active (running) since Sun 2017-06-04 23:10:52 EDT; 1h 7min ago
+             Main PID: 613 (pcsd)
+                CGroup: /system.slice/pcsd.service
+                       └─613 /usr/bin/ruby /usr/lib/pcsd/pcsd > /dev/null &
+
+            Jun 04 23:10:47 lb01 systemd[1]: Starting PCS GUI and remote configuration interface...
+            Jun 04 23:10:52 lb01 systemd[1]: Started PCS GUI and remote configuration interface.
+
+    + Thiết lập mật khẩu cho người dùng `hacluster`:
+
+            passwd hacluster
+
+        Lưu ý: đặt mật khẩu giống nhau trên cả 3 node.
+
+    + Đăng nhập vào trang quản lý pacemaker (Web GUI) qua địa chỉ ip của node. Ví dụ ở đây là https://172.172.16.69.8:2224
+
+    + Tạo cluster (Chỉ thực thiện trên cấu hình trên một node duy nhất)
+
+        - Tạo xác thực giữa các node với nhau bằng câu lệnh:
+
+                pcs cluster auth lb01 lb02
+
+            sau đó nhập password của người dùng `hacluster` đã tạo ở phía trên. Kết quả nhận được như sau:
+
+                #pcs cluster auth lb01 lb02
+                 Username: hacluster
+                 Password:
+                 lb01: Authorized
+                 lb02: Authorized
+
+        - Cấu hình cho cluster
+
+                pcs cluster setup --name ha_cluster lb01 lb02
+
+            trong câu lệnh trên:
+
+                - ha_cluster là tên của cluster mà bạn sẽ tạo, mục này có thể nhập tùy ý.
+                - lb01 lb02 là hostname các máy chủ trong cụm cluster.
+                  Muốn sử dụng tên này thì bạn phải chắc chắn đã khai báo trong file /etc/hosts
+
+            kết quả nhân được như sau:
+
+                Destroying cluster on nodes: lb01, lb02...
+                lb01: Stopping Cluster (pacemaker)...
+                lb02: Stopping Cluster (pacemaker)...
+                lb01: Successfully destroyed cluster
+                lb02: Successfully destroyed cluster
+
+                Sending cluster config files to the nodes...
+                lb01: Succeeded
+                lb02: Succeeded
+
+                Synchronizing pcsd certificates on nodes lb01, lb02...
+                lb01: Success
+                lb02: Success
+
+                Restarting pcsd on the nodes in order to reload the certificates...
+                lb01: Success
+                lb02: Success
+
+        - Khởi động lại cluster vừa tạo:
+
+                pcs cluster start --all 
+
+            kết quả nhân được như sau:
+
+                lb02: Starting Cluster...
+                lb01: Starting Cluster...
+
+        - Kích hoạt cho phép cluster khởi động cùng với OS:
+
+                pcs cluster enable --all 
+
+            kết quả như sau:
+
+                lb01: Cluster Enabled
+                lb02: Cluster Enabled
+
+        - Kiểm tra trạng thái của corosync
+
+                pcs status corosync
+
+            kết quả:
+
+                Membership information
+                ----------------------
+                    Nodeid      Votes Name
+                         1          1 lb01 (local)
+                         2          1 lb02
+
+
+    - #### Cấu hình để thêm các resources vào Cluster
+
+        - Disable cơ chế `STONITH`
+            ```sh
+            pcs property set stonith-enabled=false
+            ```
+
+        - Thiết lập policy cho cơ chế `quorum` (bỏ qua bước này nếu như cluster có nhiều hơn 2 node)
+            ```sh
+            pcs property set no-quorum-policy=ignore
+            ```
+
+        - Disable auto failback
+            ```sh
+            pcs property set default-resource-stickiness="INFINITY"
+            ```
+
+        - Kiểm tra lại các thiết lập ở trên
+            ```sh
+            pcs property list 
+            ```
+        - Kết quả như bên dưới
+            ```sh
+            Cluster Properties:
+            cluster-infrastructure: corosync
+            cluster-name: ha_cluster
+            dc-version: 1.1.15-11.el7_3.4-e174ec8
+            default-resource-stickiness: INFINITY
+            have-watchdog: false
+            no-quorum-policy: ignore
+            stonith-enabled: false
+            ```
+        
+        - Trong phần tiếp theo, ta sẽ tạo ra một resoure Virtual_IP có địa chỉ IP là 172.16.69.254 để cho các client có thể gửi các request tới địa chỉ IP này.
+
+                pcs resource create Virtual_IP ocf:heartbeat:IPaddr2 \
+                ip=172.16.69.254 cidr_netmask=24 \
+                op monitor interval=30s
+
+    - Tiếp theo, ta cần thực hiện cài đặt `zfs` trên node `zfs`, thực hiện chạy câu lệnh sau:
 
             yum install -y http://download.zfsonlinux.org/epel/zfs-release.el7_3.noarch.rpm
             gpg --quiet --with-fingerprint /etc/pki/rpm-gpg/RPM-GPG-KEY-zfsonlinux
@@ -188,25 +347,103 @@ ____
 
             pcs constraint colocation add vol1 with Virtual_IP
 
-    - Để sử dụng các chức năng về chia sẻ cũng như đồng bộ dữ liệu giữa các node `ha-zfs01` và `ha-zfs02`, zfs sử dụng việc chia sẻ các snapshot để đồng bộ giữa các node cài đặt zfs hoặc chia sẻ theo hướng client-server sử dụng dịch vụ nfs và rpcbind. Đầu tiên, ta cần khởi chạy 2 dịch vụ nfs và rpcbind để có thể sử dụng đầy đủ 2 hướng đồng bộ và chia sẻ dữ liệu trên qua việc chạy câu lệnh sau trên cả 2 node `ha-zfs01` và `ha-zfs02`:
+    - Để sử dụng các chức năng về chia sẻ cũng như đồng bộ dữ liệu giữa các node, zfs sử dụng việc chia sẻ các snapshot để đồng bộ giữa các node cài đặt zfs hoặc chia sẻ theo hướng client-server sử dụng dịch vụ nfs và rpcbind. Đầu tiên, ta cần khởi chạy 2 dịch vụ nfs và rpcbind để có thể sử dụng đầy đủ 2 hướng đồng bộ và chia sẻ dữ liệu trên qua việc chạy câu lệnh sau trên node `zfs`:
 
             systemctl enable rpcbind nfs
             systemctl start rpcbind nfs
 
-        sau đó, ta cần thiết lập cho storage pool nào được phép chia sẻ dữ liệu qua nfs bằng việc sử dụng câu lệnh sau trên cả 2 node `ha-zfs01` và `ha-zfs02`:
+        sau đó, ta cần thiết lập cho storage pool nào được phép chia sẻ dữ liệu qua nfs bằng việc sử dụng câu lệnh sau:
 
-            zfs set sharenfs=rw=@192.168.77.0/24,sync,no_root_squash,no_wdelay vol1/management
+            zfs set sharenfs=rw=@10.10.10.0/24,sync,no_root_squash,no_wdelay vol1/management
 
         trong đó:
             
             - vol1: là thư mục được chia sẻ cho các node khác
-            - 192.168.77.0/24: là dải mạng mà các máy chủ phải nằm trong đó mới có thể sử dụng
+            - 10.10.10.0/24: là dải mạng mà các máy chủ phải nằm trong đó mới có thể sử dụng 
+                             (tùy chọn này không bắt buộc phải khai báo)
             - rw: là quyền được phép của các máy chủ khi sử dụng. Ở đây là Read và Write
             - Các tham số khác có thể xem thêm ở đây: https://www.server-world.info/en/note?os=CentOS_7&p=nfs&f=1
 
-        
+        Hãy tạo một vài nội dung như: tạo một thư mục, một file vào trong thư mục /vol1 để thuận tiện cho bước kiểm tra kết quả ở phía dưới. Ví dụ:
+
+            mkdir test
+            mkdir sharednfs
+            mkdir private
+            touch nfs.conf
+
 - ### <a name="checksummed">3. Kiểm tra kết quả</a>
 
+    - Trên 2 node `backends01` và `backends02`, ta thực hiện cài đặt NFS theo hướng dẫn như sau trên cả 2 node như sau:
+
+        Bước 1: Cài đặt nfs-utils:
+
+            yum install -y nfs-utils
+
+        khi cài đặt xong, ta có thể kiểm tra với câu lệnh:
+
+            showmount -e 10.10.10.150
+
+        để biết xem ta được node `zfs` chia sẻ cho sử dụng những thư mục nào trên node. Khi chạy, ta được kết quả hiển thị tương tự như sau:
+
+            Export list for  10.10.10.150:
+            /vol1   *      
+
+        Bước 2: Cấu hình NFS client:
+
+            vi /etc/idmapd.conf
+
+        sau đó bỏ comment dòng thứ 5 và sửa thành:
+
+            Domain = zfs
+        
+        Bước 3: Khởi động dịch vụ:
+
+            systemctl start rpcbind 
+            systemctl enable rpcbind 
+
+        Bước 4: Thực hiện ánh xạ thư mục chia sẻ:
+
+            mkdir /vol1
+            mount -t nfs zfs:/vol1 /vol1
+
+        Bước 5: Cấu hình NFS mounting khi system boots:
+
+            vi /etc/fstab
+
+        thêm dòng sau vào cuối file và lưu lại:
+
+            zfs:/vol1  /vol1                   nfs     defaults        0 0
+
+        Bước 6: Cấu hình auto-mouting khi khởi động hệ thống:
+
+        Bước 6.1: Cài đặt autofs:
+
+            yum -y install autofs
+
+        Bước 6.2: Thực hiện cấu hình:
+
+            vi /etc/auto.master
+
+        thêm vào nội dung sau vào cuối file và lưu lại:
+
+            /-    /etc/auto.mount
+
+        tiếp theo, tạo file `/etc/auto.mount` với nội dung file
+
+            echo "/vol1 -fstype=nfs,rw  zfs:/vol1" >> /etc/auto.mount
+
+        Bước 6: Khởi động dịch vụ:
+
+            systemctl start autofs 
+            systemctl enable autofs 
+
+        Bước 7 (bước cuối): Kiểm tra kết quả bằng việc di chuyển tới thư mục `/vol1` với lệnh `cd /vol1`. Sau đó chạy lệnh `ls` ta được như sau:
+
+            test    sharednfs    private     nfs.conf
+
+        hãy thử tạo một vài nội dung khác qua các node `backend*` để kiểm tra xem dữ liệu có được đồng bộ hay không.
+
+        
 ____
 
 # <a name="content-others">Các nội dung khác</a>
