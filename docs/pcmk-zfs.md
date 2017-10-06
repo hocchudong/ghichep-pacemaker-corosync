@@ -482,7 +482,7 @@ ____
 
 # Tài liệu tham khảo
 
-    - [ZFS High-Availability NAS](https://github.com/ewwhite/zfs-ha/wiki)
-    - [What is ZFS? - Zeta Storage Systems](http://www.zeta.systems/zetavault/what-is-zfs/)
+- [ZFS High-Availability NAS](https://github.com/ewwhite/zfs-ha/wiki)
+- [What is ZFS? - Zeta Storage Systems](http://www.zeta.systems/zetavault/what-is-zfs/)
 
 # <a name="content-others">Các nội dung khác</a>
