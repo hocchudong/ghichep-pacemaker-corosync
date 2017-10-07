@@ -49,7 +49,7 @@ ____
     - Ngoài ra, ZFS còn có một số tính năng hữu ích khác, có thể xem [tại đây](http://www.zeta.systems/zetavault/what-is-zfs/)
 
 
-- ### <a name="integate">5. Tích hợp ZFS với Pacemaker và Corosync</a>
+- ### <a name="integrate">5. Tích hợp ZFS với Pacemaker và Corosync</a>
 
     - Đầu tiên, ta cần tạo ra một cluster sử dụng Pacemaker và Corosync. Mô hình của toàn bộ hệ thống thực hiện lab giống như sau:
 
