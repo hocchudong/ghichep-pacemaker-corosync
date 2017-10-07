@@ -341,7 +341,7 @@ ate">5. Tích hợp ZFS với Pacemaker và Corosync</a>
 
             errors: No known data errors
 
-        tại thời điểm này, bạn hãy thử reboot lại cả 2 node `ha-zfs01` và `ha-zfs02` sau đó chạy câu lệnh sau để kiểm tra kết quả:
+        tại thời điểm này, bạn hãy thử reboot lại node `zfs` sau đó chạy câu lệnh sau để kiểm tra kết quả:
 
             zfs list
 
@@ -375,7 +375,7 @@ ate">5. Tích hợp ZFS với Pacemaker và Corosync</a>
             - vol1: là tên của resource
             - ZFS: là loại resource
             - pool="vol1": khai báo storage pool cho resource quản lý đó là vol1
-            - importargs="-d /dev/mapper/": là tham số khai báo cho phép zpool import sử dụng
+            
 
     - Tạo ràng buộc cho resource vol1 và resource Virtual_IP phải cùng chạy với nhau trên 1 node. Vì ta sử dụng zfs cho chức năng lưu trữ và chia sẻ file cho các node. Ta nhận thấy resource vol1 cần phải phụ thuộc vào resource Virtual_IP, nên ta cần phải chạy câu lệnh sau để tạo ra ràng buộc:
 
