@@ -49,7 +49,8 @@ ____
     - Ngoài ra, ZFS còn có một số tính năng hữu ích khác, có thể xem [tại đây](http://www.zeta.systems/zetavault/what-is-zfs/)
 
 
-- ### <a name="integate">5. Tích hợp ZFS với Pacemaker và Corosync</a>
+- ### <a name="integr
+ate">5. Tích hợp ZFS với Pacemaker và Corosync</a>
 
     - Đầu tiên, ta cần tạo ra một cluster sử dụng Pacemaker và Corosync. Mô hình của toàn bộ hệ thống thực hiện lab giống như sau:
 
@@ -251,7 +252,7 @@ ____
             gpgcheck=1
             gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-zfsonlinux
 
-        cuối cùng ta chạy câu lệnh sau để cài đặt zfs trên cả 2 node và device-mapper-multipath software:
+        cuối cùng ta chạy câu lệnh sau để cài đặt zfs và device-mapper-multipath software:
 
             yum install -y zfs device-mapper-multipath
 
@@ -340,7 +341,7 @@ ____
 
             errors: No known data errors
 
-        tại thời điểm này, bạn hãy thử reboot lại cả 2 node `ha-zfs01` và `ha-zfs02` sau đó chạy câu lệnh sau để kiểm tra kết quả:
+        tại thời điểm này, bạn hãy thử reboot lại node `zfs` sau đó chạy câu lệnh sau để kiểm tra kết quả:
 
             zfs list
 
@@ -374,7 +375,7 @@ ____
             - vol1: là tên của resource
             - ZFS: là loại resource
             - pool="vol1": khai báo storage pool cho resource quản lý đó là vol1
-            - importargs="-d /dev/mapper/": là tham số khai báo cho phép zpool import sử dụng
+            
 
     - Tạo ràng buộc cho resource vol1 và resource Virtual_IP phải cùng chạy với nhau trên 1 node. Vì ta sử dụng zfs cho chức năng lưu trữ và chia sẻ file cho các node. Ta nhận thấy resource vol1 cần phải phụ thuộc vào resource Virtual_IP, nên ta cần phải chạy câu lệnh sau để tạo ra ràng buộc:
 
