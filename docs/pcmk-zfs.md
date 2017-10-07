@@ -49,7 +49,8 @@ ____
     - Ngoài ra, ZFS còn có một số tính năng hữu ích khác, có thể xem [tại đây](http://www.zeta.systems/zetavault/what-is-zfs/)
 
 
-- ### <a name="integrate">5. Tích hợp ZFS với Pacemaker và Corosync</a>
+- ### <a name="integr
+ate">5. Tích hợp ZFS với Pacemaker và Corosync</a>
 
     - Đầu tiên, ta cần tạo ra một cluster sử dụng Pacemaker và Corosync. Mô hình của toàn bộ hệ thống thực hiện lab giống như sau:
 
@@ -251,7 +252,7 @@ ____
             gpgcheck=1
             gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-zfsonlinux
 
-        cuối cùng ta chạy câu lệnh sau để cài đặt zfs trên cả 2 node và device-mapper-multipath software:
+        cuối cùng ta chạy câu lệnh sau để cài đặt zfs và device-mapper-multipath software:
 
             yum install -y zfs device-mapper-multipath
 
