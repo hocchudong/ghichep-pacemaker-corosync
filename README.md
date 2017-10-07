@@ -7,6 +7,22 @@ ___
 
 # Nội dung
 
+## Giới thiệu
+
+# [Tính sẵn sàng (khả dụng ) cao là gì?](docs/what-is.md)
+
+- [1. Giới thiệu](docs/what-is.md#introduce)
+- [2. Tính sẵn sàng là gì?](docs/what-is.md#whatis)
+- [3. Định lượng tính sẵn sàng](docs/what-is.md#measuring)
+- [4. Tính sẵn sàng cao hoạt động như thế nào?](docs/what-is.md#how-work)
+- [5. Tính sẵn sàng cao quan trọng khi nào?](docs/what-is.md#important)
+- [6. Điều gì tạo nên một hệ thống sẵn sàng cao?](docs/what-is.md#what-make)
+- [7. Những thành phần cần thiết nào cần cho một hệ thống đảm bảo tính sẵn sàng cao?](docs/what-is.md#what-need)
+- [8. Phần mềm nào có thể được sử dụng để cấu hình tính sẵn sàng cao cho hệ thống?](docs/what-is.md#what-pro)
+- [9. Tổng kết](docs/what-is.md#conclusion)
+- [Các nội dung khác](docs/what-is.md#content-others)
+
+____
 
 ## Phần 1: Lý thuyết
 
@@ -71,15 +87,15 @@ ___
 		- [5.1.1. Cấu hình một "Opt-In" Cluster](docs/pcmk-constraint.md#opt-in)
 		- [5.1.2. Cấu hình một "Opt-Out" Cluster](docs/pcmk-constraint.md#opt-out)
 	- [5.2. Ràng buộc về thứ tự](docs/pcmk-constraint.md#order-constraints)
-		- [5.2.1. Thứ tự cố định](docs/pcmk-constraint.md#mand-order)
-		- [5.2.2. Thứ tự linh động](docs/pcmk-constraint.md#advi-order)
+		- [5.2.1. Thứ tự bắt buộc](docs/pcmk-constraint.md#mand-order)
+		- [5.2.2. Thứ tự không bắt buộc](docs/pcmk-constraint.md#advi-order)
 		- [5.2.3. Thứ tự tập hợp các resource](docs/pcmk-constraint.md#sets-order)
 		- [5.2.4. Xóa bỏ resource từ các ràng buộc thứ tự](docs/pcmk-constraint.md#remove-order)
 	- [5.3. Ràng buộc colocation của resources](docs/pcmk-constraint.md#colocation-constraint)
-	- [5.3.1. Vị trí cố định](docs/pcmk-constraint.md#mand-place)
-	- [5.3.2. Vị trí linh động](docs/pcmk-constraint.md#advi-place)
-	- [5.3.3. Colocation các tập hợp resource](docs/pcmk-constraint.md#sets-place)
-	- [5.3.4. Xóa bỏ ràng buộc colocation](docs/pcmk-constraint.md#colocation-remove)
+		- [5.3.1. Vị trí cố định](docs/pcmk-constraint.md#mand-place)
+		- [5.3.2. Vị trí linh động](docs/pcmk-constraint.md#advi-place)
+		- [5.3.3. Colocation các tập hợp resource](docs/pcmk-constraint.md#sets-place)
+		- [5.3.4. Xóa bỏ ràng buộc colocation](docs/pcmk-constraint.md#colocation-remove)
 	- [5.4. Hiển thị cấu hình các ràng buộc](docs/pcmk-constraint.md#display-constraints)
 	
 
@@ -100,23 +116,27 @@ ___
 	- [F.5 Tạo resources quản lý KVM](docs/pcmk-shared-storage-failover.md#resource)
 	- [F.6 Kiểm tra kết quả](docs/pcmk-shared-storage-failover.md#stat)
 
-- G. Tài liệu về HA Proxy.
-	- [1. HA Proxy - High Availability Proxy](docs/ha-overview.md)
-		- [1.1 Mục đích sử dụng của HA Proxy](docs/ha-overview.md#about)
-		- [1.2 Cài đặt HA Proxy](docs/ha-overview.md#install)
-		- [1.3 Tổng quan về cấu trúc file cấu hình của HA Proxy](docs/ha-overview.md#instruc)
-	- [](#)
-	- [](#)
-	- [](#)
-	- [](#)
-	- [](#)
-	- [](#)
-	- [](#)
-	- [](#)
-	- [](#)
-	- [](#)
-	- [](#)
-	- [](#)
+
+- ## G. Các tài liệu mở rộng liên quan đến Pacemaker - Corosync
+	- [1. Sao chép dữ liệu lưu trữ sử dụng DRBD - Distributed Replicated Block Device kết hợp sử dụng Pacemaker.](docs/pcmk-drbd.md)
+		- [1.1 Yêu cầu giải quyết bài toán](docs/pcmk-drbd.md#issue)
+		- [1.2 Mô hình triển khai và các yêu cầu](docs/pcmk-drbd.md#models)
+		- [1.3 Tiến hành cài đặt](docs/pcmk-drbd.md#install)
+			- [1.3.1 Cài đặt httpd - Web Server](docs/pcmk-drbd.md#httpd)
+			- [1.3.2 Tạo, format ổ đĩa cho việc đồng bộ dữ liệu](docs/pcmk-drbd.md#format)
+			- [1.3.3 Cài đặt DRBD và cấu hình](docs/pcmk-drbd.md#install-drbd)
+			- [1.3.4 Cài đặt pacemaker và corosync](docs/pcmk-drbd.md#install-pcsd)
+			- [1.3.5 Tạo cluster, thêm các resource và ràng buộc sử dụng pacemaker](docs/pcmk-drbd.md#pcsd-resource)
+		- [1.4 Kiểm tra kết quả](docs/pcmk-drbd.md#test)
+		
+	- [2. Tích hợp ZFS với Pacemaker và Corosync](docs/pcmk-zfs.md)
+		- [1. ZFS là gì?](docs/pcmk-zfs.md#what-is)
+		- [2. Storage pools](docs/pcmk-zfs.mds-pools)
+		- [3. Toàn vẹn dữ liệu](docs/pcmk-zfs.md#di)
+		- [4. Snapshot](docs/pcmk-zfs.md#ss)
+		- [5. Tích hợp ZFS với Pacemaker và Corosync](docs/pcmk-zfs.md#integrate)
+		- [6. Kiểm tra kết quả](docs/pcmk-zfs.md#checksummed)
+		
 # Tài liệu tham khảo:
 
 - [High Availability Add-on](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/High_Availability_Add-On_Overview/ch-introduction-HAAO.html)
