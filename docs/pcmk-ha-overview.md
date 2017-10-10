@@ -102,7 +102,7 @@ ___
 	- <a name="corosync">A.2.4 Corosync</a>
 
 		+ Là một cơ sở hạ tầng mức độ thấp cung cấp thông tin tin cậy, thành viên và những thông tin quy định về cluster
-		+ Trong cấp cả các ha cluster stack hiện tại, corosync là một giải pháp mặc định. Điều này có nghĩa rằng ta nên sử dụng corosync trong mọi trường hợp. Đôi khi, trong một vài trường hợp đặc biệt, corosync sẽ không làm việc.
+		+ Trong các mức độ của các ha cluster stack hiện tại, corosync là một giải pháp mặc định. Điều này có nghĩa rằng ta nên sử dụng corosync trong mọi trường hợp. Đôi khi, trong một vài trường hợp đặc biệt, corosync sẽ không làm việc.
 
 	- <a name="quorum">A.2.5 Quorum</a>
 
