@@ -77,7 +77,7 @@ ___
 			
 +  <a name="typically">Các mô hình triển khai pacemaker</a>
 
-	- Pacemaker không có giới hận về cách triển khai của bạn, chính điều này mà nó cho phép ta có thể triển khai theo hầu hết các mô hình như:
+	- Pacemaker không có giới hạn về cách triển khai của bạn, chính điều này mà nó cho phép ta có thể triển khai theo hầu hết các mô hình như:
 		+ Active/ Active
 		+ Active/ Passive
 		+ N + 1

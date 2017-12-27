@@ -9,19 +9,6 @@ ___
 
 ## Giới thiệu
 
-# [Tính sẵn sàng (khả dụng ) cao là gì?](docs/what-is.md)
-
-- [1. Giới thiệu](docs/what-is.md#introduce)
-- [2. Tính sẵn sàng là gì?](docs/what-is.md#whatis)
-- [3. Định lượng tính sẵn sàng](docs/what-is.md#measuring)
-- [4. Tính sẵn sàng cao hoạt động như thế nào?](docs/what-is.md#how-work)
-- [5. Tính sẵn sàng cao quan trọng khi nào?](docs/what-is.md#important)
-- [6. Điều gì tạo nên một hệ thống sẵn sàng cao?](docs/what-is.md#what-make)
-- [7. Những thành phần cần thiết nào cần cho một hệ thống đảm bảo tính sẵn sàng cao?](docs/what-is.md#what-need)
-- [8. Phần mềm nào có thể được sử dụng để cấu hình tính sẵn sàng cao cho hệ thống?](docs/what-is.md#what-pro)
-- [9. Tổng kết](docs/what-is.md#conclusion)
-- [Các nội dung khác](docs/what-is.md#content-others)
-
 ____
 
 ## Phần 1: Lý thuyết
